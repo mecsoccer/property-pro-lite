@@ -1,0 +1,570 @@
+html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+}
+body{
+    margin: 0;
+    background: white;
+    font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
+}
+
+/* colors */
+.dom-color{
+    color: #ff0000;
+}
+.dark-theme{
+    background: #3E474F;
+}
+.dom-color-bg{
+    background-color: #ff0000;
+}
+.bg-color{
+    background-color: #F4F4EF;
+}
+.white-bg{
+    background: white;
+}
+.accent-fg-1{
+
+}
+.accent-bg-1{
+
+}
+.sub-title-color{
+    color: #0C8BE8;
+}
+.white-text{
+    color: white;
+}
+.dk-text{
+    color: #3E474F;
+}
+.txt-ash-black{
+    color: #707070;
+}
+.highlighted{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* fonts */
+.roboto{
+    font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana'; 
+}
+.twelve{
+    font-size: 12px;
+}
+.thirteen{
+    font-size: 13px;
+}
+.fourteen{
+    font-size: 14px;
+}
+.sixteen{
+    font-size: 16px;
+}
+.eighteen{
+    font-size: 18px;
+}
+.twenty{
+    font-size: 20px
+}
+.twenty-four{
+    font-size: 24px;
+}
+.sixty{
+    font-size: 60px;
+}
+
+/* text */
+.align-left{
+    text-align: left;
+}
+.align-right{
+    text-align: right;
+}
+.align-center{
+    text-align: center;
+}
+.bold{
+    font-weight: bold;
+}
+.medium{
+    font-weight: 500;
+}
+.underline{
+    text-decoration: underline;
+}
+.lt-sp-2{
+    letter-spacing: 2px;
+}
+.lt-sp-5{
+    letter-spacing: 5px;
+}
+.upper{
+    text-transform: uppercase;
+}
+.lower{
+    text-transform: lowercase;
+}
+.capitalize{
+    text-transform: capitalize;
+}
+
+/*images*/
+svg{
+    width: 20px;
+    height: 14px;
+}
+
+/*widths*/
+.wt-300{
+    width: 300px;
+}
+.onecol{
+    width: 8.33%;
+}
+.twocol{
+    width: 16.66%
+}
+.threecol{
+    width: 25%;
+}
+.fourcol{
+    width: 33.33%;
+}
+.fivecol{
+    width: 41.67%;
+}
+.sixcol{
+    width: 50%; 
+}
+.sevencol{
+    width: 58.33%;
+}
+.eightcol{
+    width: 66.67%;
+}
+.ninecol{
+    width: 75%;
+}
+.tencol{
+    width: 83.33%;
+}
+.elevencol{
+    width: 91.67%;
+}
+.twelvecol{
+    width: 100%;
+}
+.ten-percent{
+    width: 10%;
+}
+.fifteen-percent{
+    width: 15%;
+}
+.sixty-percent{
+    width: 60%;
+}
+.seventy-percent{
+    width: 70%;
+}
+
+/* height */
+.height-fit{
+    height: fit-content;
+}
+.vh100{
+    height: 100vh;
+}
+.vh75{
+    height: 75vh;
+}
+.h60{
+    height: 60px;
+}
+.h50{
+    height: 50px;
+}
+
+/* overflow */
+.y-overflow-auto{
+    overflow-y: auto;
+}
+
+/* link */
+.format-link{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* padding */
+.padding-5{
+    padding: 5px;
+}
+.padding-10{
+    padding: 10px;
+}
+.top-bottom-p10{
+    padding: 10px 0;
+}
+.top-bottom-p5{
+    padding: 5px 0;
+}
+.right-left-p10{
+    padding: 0 10px;
+}
+.right-left-p5{
+    padding: 0 5px;
+}
+.top-padding-5{
+    padding-top: 5px;
+}
+.top-padding-45{
+    padding-top: 45px;
+}
+.top-pad-15cent{
+    padding-top: 15%;
+}
+.left-padding-10{
+    padding-left: 10px;
+}
+.left-padding-75{
+    padding-left: 75px;
+}
+
+/* margin */
+.top-margin-10{
+    margin-top: 10px;
+}
+.top-margin-15{
+    margin-top: 15px;
+}
+.top-margin-20{
+    margin-top: 20px;
+}
+.top-margin-25{
+    margin-top: 25px;
+}
+.top-margin-45{
+    margin-top: 45px;
+}
+.bottom-margin-45{
+    margin-bottom: 45px;
+}
+.bottom-margin-35{
+    margin-bottom: 35px;
+}
+.bottom-margin-20{
+    margin-bottom: 20px;
+}
+.bottom-margin-15{
+    margin-bottom: 15px;
+}
+.bottom-margin-10{
+    margin-bottom: 10px;
+}
+.no-margin{
+    margin: 0;
+}
+
+/* border */
+.no-border{
+    border: none;
+}
+.border-1{
+    border: 1px solid #BCE0FD;
+}
+
+/* radius */
+.radius-5{
+    border-radius: 5px;
+}
+
+/* buttons */
+.normal-btn{
+    width: fit-content;
+    padding: 10px;
+    border: none;
+    text-decoration: none;
+}
+.trans-btn {
+    width: fit-content;
+    padding: 0 10px;
+    border: 2px solid;
+    background: inherit;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* tables */
+.table-header{
+    background-color: #0c8be8;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+/* list */
+.no-li-style{
+    list-style: none;
+}
+
+/* navigation */
+.top-navbar{
+    position: fixed;
+    top: 0px;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    background-color: #0C8BE8;
+    flex-wrap: wrap;
+    padding: 0;
+    z-index: 2;
+}
+.top-nav-list{
+    margin-top: 0px;
+}
+.side-bar{
+    height: 115%;
+    position: absolute;
+    overflow-y: scroll;
+    width: 300px;
+    min-width: 299px;
+    left: 0;
+    transform: translate(-300px, 0);
+    transition: transform 0.3s ease;
+    z-index: 1;
+    background: #3E474F;
+    padding-left: 5px;
+}
+.side-bar.open{
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: transform 0.3s ease;
+}
+.open{
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: transform 0.3s ease;
+}
+.side-nav-list{
+    list-style: none;
+    margin: 0;
+    padding-left: 15px;
+}
+.side-nav-btn{
+    color: #dbe2e8;
+    margin-bottom: 10%;
+    letter-spacing: 5px;
+}
+.side-nav-btn:last-child{
+    margin-top: 90px;
+}
+
+/* footer */
+.footer{
+    /*
+    position: fixed;
+    bottom: 0;
+    background: white;
+    letter-spacing: 5px;
+    border-top: 1px solid gainsboro;
+    text-align: center;
+    max-height: 50px;
+    overflow-y: auto;*/
+    height: 100px;
+    overflow-y: auto;
+}
+
+/* tabs */
+.tab-container{
+    padding: 15px 15px 0px 15px;
+    overflow-y: hidden;
+}
+.tab {
+    text-align: center;
+    color: #3E474F;
+    border-radius: 5px 5px 0px 0px;
+    padding: 8px 5%;
+    float: left;
+    font-size: 14px;
+    cursor: pointer;
+    width: 33.3%;
+    max-width: 96px;
+}
+.tab:hover{
+    background: aliceblue;
+}
+.tab-main{
+    color: #44A751;
+    background: white;
+    font-weight: bold;
+}
+
+/* display */
+.inline-block{
+    display: inline-block;
+}
+.inline{
+    display: inline;
+}
+.block{
+    display: block;
+}
+.flex{
+    display: flex;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.off{
+    display: none;
+}
+
+/* position */
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.fixed{
+    position: fixed;
+}
+.top10{
+    top: 10px;
+}
+
+/* index */
+.index-1{
+    z-index: 1;
+}
+.index-2{
+    z-index: 2;
+}
+.index-3{
+    z-index: 3;
+}
+
+/* cursor */
+.pointer{
+    cursor: pointer;
+}
+.not-allowed{
+    cursor: not-allowed;
+}
+
+/* others */
+.logo-name{
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
+    padding: 6px 0;
+}
+.menu-button{
+    width: 30px;
+    height: 29px;
+    position: relative;
+    top: 9px;
+    color: white;
+    background: inherit;
+    border: 0;
+    z-index: 2;
+}
+.menu-button:hover{
+    cursor: pointer;
+}
+.menu-button-2{
+    width: 20px;
+    height: 17px;
+    display: none;
+}
+.menu-button-2:hover{
+    cursor: pointer;
+}
+.add-button{
+    width: 25px;
+    height: 25px;
+}
+.centered{
+    margin: auto;
+}
+.center-text{
+    margin: auto;
+    text-align: center;
+}
+.form-space{
+    margin: auto;
+}
+.page-title{
+    margin-bottom: 35px;
+}
+.pad-under{
+    padding-bottom: 20px;
+}
+.pad-top{
+    padding-top: 20px;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.margin-top40{
+    margin-top: 40px;
+}
+.margin-under{
+    margin-bottom: 20px;
+}
+.password-field{
+    height: 45px;
+    width: 100%;
+    border: 1px solid #DBDBDB;
+    font-size: 14px;
+    box-shadow:  0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 2%;
+    margin-bottom: 20px;
+}
+.sign-in-button{
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 17px 15px 35px 0px rgba(0, 0, 0, 0.2);
+}
+.right-end{
+    float: right;
+}
+.left-end-major{
+    width: 80%;
+}
+.search-bar {
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid gainsboro;
+    padding: 5px;
+    box-shadow: 0px 1px 2px 1px gainsboro;
+}
+.cart-content {
+    height: 55vh;
+}
+.fit{
+    width: fit-content;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.form-container{
+    margin: 120px 4% 0 4%;
+}
+.error{
+    color: red;
+    margin-bottom: 30px;
+}
