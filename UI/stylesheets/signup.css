@@ -32,8 +32,10 @@ svg{
 .sign-up {
     background: white;
     width: auto;
+    height: 70%;
     padding: 4%;
     margin: 50px 5px;
+    overflow-y: auto;
 }
 .text-field {
     height: 45px;
