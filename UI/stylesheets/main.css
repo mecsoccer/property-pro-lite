@@ -11,14 +11,17 @@ body{
 }
 
 /* colors */
-.dom-color{
-    color: #ff0000;
+.dom-color {
+    color: #27C063;
+}
+.white {
+    color: white;
 }
 .dark-theme{
     background: #3E474F;
 }
-.dom-color-bg{
-    background-color: #ff0000;
+.dom-color-bg {
+    background-color: #27C063;
 }
 .bg-color{
     background-color: #F4F4EF;
