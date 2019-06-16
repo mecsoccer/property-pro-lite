@@ -12,13 +12,13 @@ body{
 
 /* colors */
 .dom-color{
-    color: #ff0000;
+    color: #27C063;
 }
 .dark-theme{
     background: #3E474F;
 }
 .dom-color-bg{
-    background-color: #ff0000;
+    background-color: #27C063;
 }
 .bg-color{
     background-color: #F4F4EF;
@@ -27,10 +27,22 @@ body{
     background: white;
 }
 .accent-fg-1{
-
+    color: #464E51;
 }
 .accent-bg-1{
-
+    background: #464E51;
+}
+.accent-fg-2{
+    color: #E8E9EA;
+}
+.accent-bg-2{
+    background: #E8E9EA;
+}
+.accent-fg-3{
+    color: #F6642D;
+}
+.accent-bg-3{
+    background: #F6642D;
 }
 .sub-title-color{
     color: #0C8BE8;
@@ -424,6 +436,14 @@ tr:nth-child(even){
     display: none;
 }
 
+/* over-flow */
+.hidden{
+    overflow: hidden;
+}
+.scroll{
+    overflow: scroll;
+}
+
 /* position */
 .relative{
     position: relative;
@@ -478,14 +498,6 @@ tr:nth-child(even){
     z-index: 2;
 }
 .menu-button:hover{
-    cursor: pointer;
-}
-.menu-button-2{
-    width: 20px;
-    height: 17px;
-    display: none;
-}
-.menu-button-2:hover{
     cursor: pointer;
 }
 .add-button{

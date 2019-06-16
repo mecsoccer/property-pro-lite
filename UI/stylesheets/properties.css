@@ -1,0 +1,297 @@
+.page-container{
+    height: 1440px;
+    width: 100%;
+}
+.page-nav{
+    height: 55px;
+    border-bottom: 1px solid gainsboro;
+    padding: 0 10px;
+}
+.page-main{
+    height: 1284px;
+    padding: 0 calc((100% - 370px)/2);
+}
+.footer{
+    height: 100px;
+    padding-top: 25px;
+}
+.page-logo{
+    width: fit-content;
+    margin-top: 8px;
+}
+.menu{
+    width: 20px;
+    height: 16px;
+    margin-top: 18px;
+}
+.page-logo img{
+    width: 120px;
+    height: 37px;
+}
+.search-container{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.search-container div{
+    border: 1px solid #27C063;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.search-btn{
+    width: 30px;
+    height: 30px;
+    border: none;
+}
+.search{
+    border-style: hidden;
+    height: 30px;
+    padding: 5px;
+    width: 25vw;
+    float: left;
+    margin: auto;
+}
+.signout{
+    width: 20%;
+    padding-top: 33px;
+    text-align: right;
+    display: none;
+}
+.menu-drop-down{
+    float: right;
+    width: 50%;
+    background: #E8E9EA;
+    height: 50px;
+    padding-top: 15px;
+    text-align: center;
+    color: #464E51;
+    cursor: pointer;
+    position: fixed;
+    top: 55px;
+    right: 0px;
+    transform: translate(100%, 0);
+    transition: transform 1s ease;
+}
+.menu-drop-down.on{
+    transform: translate(0, 0);
+    transition: transform 1s ease;
+}
+
+/* filter-section */
+.filter-section{
+    height: 50px;
+    margin: 35px 0;
+    padding: 0 10px;
+}
+.filter{
+    padding-top: 10px;
+    margin-right: 20px;
+}
+.filter-section select{
+    margin: 2.5px 0 0;
+    height: 35px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #464E51;
+    float: left;
+}
+.filter-section svg{
+    float: right;
+    width: 40px;
+    height: 40px;
+}
+
+/* property section */
+.properties{
+    height: 1150px;
+    overflow-y: auto;
+}
+.property{
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #E8E9EA;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.property-image{
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.property-image img{
+    height: 100%;
+}
+.property-desc{
+    height: 100px;
+    padding: 10px;
+}
+.property-desc .location{
+    width: 16px;
+    height: 18px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.street{
+    margin: 8px 0;
+    color: #979393;
+}
+.city{
+    color: #979393;
+}
+.property-desc .delete, .property-desc .edit{
+    width: 16px;
+    height: 16px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.pagination{
+    margin: auto;
+}
+.pagination button{
+    background: white;
+    color: #27C063;
+    border: 1px solid  #27C063;
+}
+.pagination span{
+    margin: 0 5px;
+}
+
+@media screen and (min-width: 500px) {
+    .page-main{
+        height: 1515px;
+        padding: 0 calc((100% - 370px)/2);
+    }
+    .search{
+        border-style: hidden;
+        height: 30px;
+        padding: 5px 20px;
+        width: 250px;
+        float: left;
+        margin: auto;
+    }
+    .filter-section{
+        padding: 0 30px;
+    }
+    .properties{
+        height: 1340px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .menu{
+        display: none;
+    }
+    .page-nav{
+        height: 85px;
+        padding: 0 20px;
+    }
+    .page-main{
+        height: 1515px;
+        padding: 0 calc((100% - 590px)/2);
+    }
+    .page-logo{
+        width: 20%;
+        margin-top: 23px;
+    }
+    .page-logo img{
+        width: 155px;
+        height: 37px;
+    }
+    .search-container{
+        width: 72%;
+        padding-top: 22px;
+        margin: auto;
+    }
+    .search-container div{
+        border: 1px solid #27C063;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .search-btn{
+        width: 50px;
+        height: 40px;
+        border: none;
+    }
+    .search{
+        height: 40px;
+    }
+    .signout{
+        float: left;
+        display: initial;
+        width: 8%;
+    }
+
+    /* properties section */
+    .properties{
+        display: inline-block;
+        height: 1370px;
+    }
+    .property{
+        width: 270px;
+        display: inline-block;
+        margin: 0 10px 30px 10px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .page-logo{
+        width: 20%;
+        margin-top: 23px;
+    }
+    .search-container{
+        width: 70%;
+        padding-top: 22px;
+        margin: auto;
+    }
+    .search{
+        width: 350px;
+    }
+    .signout{
+        float: left;
+        display: initial;
+        width: 10%;
+    }
+    .properties{
+        padding: 0;
+    }
+    .property{
+        width: 300px;
+        margin: 0 20px 30px 20px;
+    }
+    .page-main{
+        padding: 0 calc((100% - 690px)/2);
+    }   
+}
+
+@media screen and (min-width: 1100px) {
+    .search-container{
+        width: 60%;
+        padding-top: 22px;
+        margin: auto;
+    }
+    .signout{
+        width: 20%;
+    }
+    .properties {
+        padding: 0;
+    }
+    .property{
+        width: 300px;
+        margin: 0 30px 30px 30px;
+    }
+    .page-main{
+        padding: 0 calc((100% - 1090px)/2);
+    }
+    .property-image img:hover{
+        transform: scale(1.5);
+        transition: transform 1s ease;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    body{
+        margin: 0 calc((100% - 1500px)/2);
+    }
+}
