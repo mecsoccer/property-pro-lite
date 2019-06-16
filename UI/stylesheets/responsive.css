@@ -81,3 +81,9 @@
         width: 60%;
     }
 }
+
+@media screen and (min-width: 1500px) {
+    body{
+        margin: 0 calc((100% - 1500px)/2);
+    }
+}
