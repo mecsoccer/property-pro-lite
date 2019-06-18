@@ -1,0 +1,144 @@
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+.form-field, .form-select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.form-btn {
+    width: 40%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 25px 30% 0 30%;
+}
+
+input[type=submit]:hover {
+    background-color: #086db7;
+}
+input[type=file]{
+	margin-top: 10px;
+}
+.submit-sign-up {
+	width: 100%;
+	background-color:#5959aa;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.submit-sign-up:hover {
+	background-color: #45a049;
+}
+
+.property-form {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 30px;
+	margin: 50px 20px;
+	display: none;
+}
+.modal-close-btn{
+	position: relative;
+    bottom: 25px;
+    border: 1px solid gainsboro;
+    color: red;
+    padding: 0 5px;
+}
+.confirm-action{
+	text-align: center;
+    padding: 5px;
+    margin-top: 15px;
+}
+.confirm-action div{
+	font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.confirm-action button{
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    margin: 5px;
+    box-shadow: 2px 3px 3px 0px darkgrey;
+}
+.confirm-action .cancel{
+	background: #0c8be8;
+}
+.confirm-action .cancel:hover{
+	background: #03578f;
+}
+.confirm-action .delete{
+	background: #e24e4e;
+}
+.confirm-action .delete:hover{
+	background: rgb(168, 1, 1);
+}
+
+.loader {
+	display: none;
+    z-index: 1;
+    margin: 10px auto;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 0.5s linear infinite;
+    animation: spin 0.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media screen and (min-width: 600px) {
+	.property-form{
+		width: 400px;
+        margin: auto;
+        margin-top: 100px;
+        padding: 40px;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.property-form{
+        margin-top: 50px;
+        margin-bottom: 50px;
+	}
+}
