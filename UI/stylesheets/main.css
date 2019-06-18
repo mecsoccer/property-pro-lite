@@ -44,6 +44,9 @@ body{
 .accent-bg-3{
     background: #F6642D;
 }
+.accent-bd-3{
+    border: 1px solid #F6642D !important;
+}
 .sub-title-color{
     color: #0C8BE8;
 }
