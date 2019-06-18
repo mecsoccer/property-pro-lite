@@ -11,7 +11,9 @@ const modal = document.getElementById('myModal');
 const modalCloseBtn = document.querySelectorAll('.modal-close-btn');
 const allForms = document.querySelectorAll('.property-form');
 const addPropertyForm = document.querySelector('.add-property-form');
+const updatePropertyForm = document.querySelector('.update-property-form')
 const addBtn = document.querySelector('.add-property-btn');
+const updateBtn = document.querySelectorAll('.edit')
 
 modalCloseBtn.forEach((btn) => {
   btn.addEventListener('click', () => {
@@ -25,6 +27,13 @@ modalCloseBtn.forEach((btn) => {
 addBtn.addEventListener('click', () => {
   modal.style.display = 'block';
   addPropertyForm.style.display = 'block';
+});
+
+updateBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    modal.style.display = 'block';
+    updatePropertyForm.style.display = 'block';
+  });
 });
 
 /* loader */
