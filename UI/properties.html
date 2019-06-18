@@ -297,6 +297,39 @@
                 <input class="form-btn dom-color-bg" type="submit" value="Add">
             </form>
         </div>
+
+        <div class="property-form update-property-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty accent-fg-1">Update Property</h4>
+            <form action="" method="post" class="top-margin-20">
+                <label for="price" class="col-25">Price(&#x20A6;) *</label><span style="color: red"></span>
+                <input type="text" name="price" class="form-field col-75" required>
+        
+                <label for="state" class="col-25">State *</label><span style="color: red"></span>
+                <input type="text" name="state" class="form-field col-75" required>
+                
+                <label for="city" class="col-25">City *</label><span style="color: red"></span>
+                <input type="text" name="city" class="form-field col-75" required>
+                
+                <label for="address" class="col-25">Address *</label><span style="color: red"></span>
+                <input type="text" name="address" class="form-field col-75" required>
+
+                <label for="property-type" class="col-25">Type *</label><span style="color: red"></span>
+                <select class="form-field col-75" name="property-type" required>
+                    <option>select property type</option>
+                    <option>self contained</option>
+                    <option>2 bedroom flat</option>
+                    <option>3 bedroom flat</option>
+                </select>
+                
+                <label for="image" class="col-25">Image *</label><span style="color: red"></span>
+                <input accept="image/*" type="file" name="image" class="form-field col-75" required>
+
+                <div class="loader"></div>
+            
+                <input class="form-btn dom-color-bg" type="submit" value="Update">
+            </form>
+        </div>
     </div>
 
     <script src="./javascript/properties.js"></script>
