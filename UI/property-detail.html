@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Property Pro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="./stylesheets/main.css">
+  <link rel="stylesheet" href="./stylesheets/property-detail.css">
+  <link rel="stylesheet" href="./stylesheets/properties.css">
+  <link rel="stylesheet" href="./stylesheets/form.css">
+  <link rel="stylesheet" href="./stylesheets/responsive.css">
+  <link rel="icon" href="">
+</head>
+<body>
+    <div class="detail-container">
+        <div class="page-nav">
+            <div class="page-logo left">
+                <img src="./img/logo-dark.svg" class="pointer">
+            </div>
+            <img src="./img/menu.svg" class="menu right">
+            <div class="search-container left">
+                <div class="centered fit">
+                    <input type="text" class="search eighteen" placeholder="Seach places">
+                    <button class="search-btn accent-bg-2 pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><defs><style>.ab{fill:#E8E9EA;}.b{fill:#27C063;}</style></defs><g transform="translate(96 -7835)"><rect class="ab" width="26" height="26" transform="translate(-96 7835)"/><path class="b" d="M25.837,23.563,20.475,18.2a11.126,11.126,0,0,0,2.275-6.825A11.3,11.3,0,0,0,11.375,0,11.3,11.3,0,0,0,0,11.375,11.3,11.3,0,0,0,11.375,22.75,11.126,11.126,0,0,0,18.2,20.475l5.363,5.363ZM3.25,11.375A8.046,8.046,0,0,1,11.375,3.25,8.046,8.046,0,0,1,19.5,11.375,8.046,8.046,0,0,1,11.375,19.5,8.046,8.046,0,0,1,3.25,11.375Z" transform="translate(-96 7835)"/></g></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="signout">
+                <span class="pointer">Signout</span>
+            </div>
+        </div>
+        <div class="menu-drop-down">
+            <span>Signout</span>
+        </div>
+
+        <div class="back-btn-div">
+            <a class="back-btn capitalize" href="./properties.html">View More</a>
+        </div>
+
+        <div class="detail-main">
+            <div class="images-panel">
+                <div class="big-img-div centered fit">
+                    <img src="./img/prop2.jpg">
+                </div>
+                <div class="address-div">
+                    <div>No. 36 araromi street, onike, Yaba, Lagos</div>
+                    <img src="./img/location.svg" class="location-svg">
+                </div>
+                <div class="small-img">
+                    <div>
+                        <div class="sm-img-div">
+                            <img src="./img/night-view.jpg" class="sm-img">
+                        </div>
+                        <p class="align-center">Night View</p>
+                    </div>
+                    <div>
+                        <div class="sm-img-div">
+                            <img src="./img/back-view.jpg" class="sm-img">
+                        </div>
+                        <p class="align-center">Back View</p>
+                    </div>
+                    <div>
+                        <div class="sm-img-div">
+                            <img src="./img/inside-view.jpg" class="sm-img">
+                        </div>
+                        <p class="align-center">Inside View</p>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-panel">
+                <div class="centered">
+                    <h3 class="panel-header">Price</h3>
+                    <span class="twenty bold accent-fg-3 lt-pd-30">&#x20A6;10,000,000.00</span>
+                </div>
+                <div class="centered">
+                    <h3 class="panel-header">Contact Owner</h3>
+                    <p class="lt-pd-30">08093608025</p>
+                    <span class="lt-pd-30">owner@owner.com</span>
+                </div>
+                <div class="centered">
+                    <h3 class="panel-header">Status</h3>
+                    <span class="status-el dom-color lt-pd-30">available for rent</span>
+                </div>
+                <div class="centered">
+                    <h3 class="panel-header">Property Type</h3>
+                    <span class="lt-pd-30">Duplex</span>
+                </div>
+                <div class="centered">
+                    <button class="sold-btn accent-bg-3">Mark as Sold</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer accent-bg-1">
+            <p class="white-text align-center">© PropertyPro-lite, 2019</p>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="property-form delete-property-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <div>
+                <p>Are you sure to mark this property as sold?</p>
+                <button class="form-btn dom-color-bg">Cancel</button>
+                <button class="form-btn accent-bg-3">Sold</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./javascript/property-detail.js"></script>
+</body>
