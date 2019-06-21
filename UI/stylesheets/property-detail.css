@@ -1,0 +1,164 @@
+.detail-container{
+    height: 950px;
+    width: 100%;
+}
+.detail-main{
+    height: 850px;
+    width: 100%;
+    overflow-y: auto;
+}
+.back-btn-div{
+    margin: 30px 0 30px 5px;
+}
+.back-btn{
+    border: 1px solid #464E51;
+    border-radius: 5px;
+    background: white;
+    color: #464E51;
+    text-decoration: none;
+    padding: 8px 23px;
+}
+.images-panel{
+    height: fit-content;
+}
+.detail-panel{
+    height: 500px;
+}
+.detail-panel div{
+    margin-bottom: 22px;
+    width: 180px;
+}
+.panel-header{
+    height: 36px;
+    border-left: 3px solid #27C063;
+    line-height: 38px;
+    padding-left: 14px;
+}
+.lt-pd-30{
+    padding-left: 30px;
+}
+.sold-btn{
+    margin-top: 20px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gainsboro;
+    color: white;
+    cursor: pointer;
+}
+.big-img-div{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.big-img-div img{
+    width: 305px;
+    height: 215px;
+    border-radius: 5px;
+}
+.address-div{
+    padding: 0 10px;
+}
+.address-div div{
+    float: left;
+    width: 80vw;
+    overflow-x: auto;
+}
+.location-svg{
+    width: 25px;
+    height: 28px;
+}
+.small-img{
+    overflow-x: scroll;
+    display: -webkit-box;
+    margin: 20px 10px;
+}
+.small-img div{
+    display: block;
+    margin: 0 2px;
+}
+.sm-img-div{
+
+}
+.sm-img{
+    width: 156px;
+    height: 135px;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    .images-panel{
+        width: fit-content;
+        margin: auto;
+    }
+    .address-div{
+        width: fit-content;
+        margin: auto;
+    }
+    .address-div div{
+        width: fit-content;
+        margin-right: 50px;
+    }
+    .small-img{
+        width: fit-content;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .big-img-div img{
+        width: 485px;
+        height: 330px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .detail-main {
+        height: 675px;
+    }
+    .back-btn-div {
+        margin: 30px 0 60px 5px;
+    }
+    .images-panel{
+        float: left;
+    }
+    .detail-panel {
+        height: 500px;
+        width: fit-content;
+        padding: 0 10px;
+        float: left;
+    }
+    .detail-main{
+        width: fit-content;
+        margin: auto;
+    }
+    .panel-header{
+        margin: 0;
+        margin-bottom: 15px;
+    }
+    .big-img-div {
+        margin-top: 0;
+    }
+    .detail-panel div {
+        margin-bottom: 39.5px;
+    }
+    .images-panel, .detail-panel{
+        padding: 0 20px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .big-img-div{
+        overflow: hidden;
+        border-radius: 5px;
+    }
+    .big-img-div img {
+        width: 545px;
+    }
+    .big-img-div img:hover{
+        transform: scale(1.5);
+        transition: transform 1s ease;
+    }
+    .small-img div {
+        display: block;
+        margin: 0 10px;
+    }
+}
