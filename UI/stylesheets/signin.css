@@ -64,6 +64,9 @@ svg{
     font-weight: bold;
     font-size: 24px;
 }
+.or{
+    margin: 0 10px;
+}
 .center-text {
     margin: auto;
     text-align: center;
@@ -77,6 +80,9 @@ svg{
 }
 .centered {
     margin: auto;
+}
+.pointer{
+    cursor: pointer;
 }
 .dom-color-bg {
     background-color: #27C063;
@@ -92,10 +98,11 @@ svg{
 }
 
 @media screen and (min-width: 600px) {
-    .sign-up{
+    .sign-in{
         background-color: white;
         box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
         margin: auto;
+        margin-top: 70px;
         width: 400px;
         height: 500px;
         overflow-y: auto;
