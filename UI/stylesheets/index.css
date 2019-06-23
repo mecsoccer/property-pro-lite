@@ -2,13 +2,11 @@ html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     box-sizing: border-box;
   }
   html, body, .main{
-    width: 100%;
     height: 100%;
   }
   body{
     margin: 0;
-    background: url('../img/inherited-house.jpg') !important;
-    margin-bottom: 100px;
+    background: white !important;
     font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
   }
   a{
@@ -16,16 +14,46 @@ html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     color: inherit;
   }
   .container {
-      position: fixed;
       margin: auto;
       z-index: 1;
-      padding: 0 10px;
       left: 0;
       top: 0;
       width: 100%;
-      height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.4);
+  }
+  .intro-img-div{
+    background: url('../img/night-view.jpg') !important;
+    height: 95vh;
+    margin-bottom: 25px;
+    max-height: 679px;
+  }
+  .show-case{
+    display: -webkit-box;
+    overflow: auto;
+    margin: 0 5px;
+  }
+  .property{
+    width: 270px !important;
+    margin: 0 5px 30px !important;
+  }
+  .client-div, .agent-div{
+    padding: 50px 10px;
+  }
+  .client-intro p, .agent-intro p {
+    font-size: 25px;
+    margin: 50px 0;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    text-transform: capitalize;
+}
+  .agent-btn-div, .client-btn-div{
+    padding-top: 20px;
+  }
+  .agent-btn-div button, .client-btn-div button{
+    font-size: 18px;
+    padding: 16px 20px;
+    border-radius: 5px;
+    border: none;
   }
   .site_name{
     color: white;
@@ -51,24 +79,17 @@ html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     background: white !important;
   }
   .header{
-    margin-top: 20px;
+    padding-top: 20px;
     text-align: center;
+    height: fit-content;
   }
   .intro{
-    margin-top: 90px;
-    margin-bottom: 0;
+    margin-top: 40px;
+    margin-bottom: 20px;
     text-align: center;
     color: white;
     font-size: 2rem;
-    text-transform: uppercase;
-  }
-  .sub_intro{
-    margin-top: 5px;
-    text-align: center;
-    color: #00ffe6;
-    font-size: 20px;
-    font-weight: bolder;
-    letter-spacing: 3px;
+    text-transform: capitalize;
   }
   .call_action{
     width: fit-content;
@@ -76,23 +97,38 @@ html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     color: white;
     border-radius: 5px;
     background: #f16821;
+    box-shadow: 2px 2px 8px 2px #78330f;
     border: none;
     padding: 15px 20px;
     cursor: pointer;
+    letter-spacing: 2px;
   }
   .centered{
     margin: auto;
     width: fit-content;
   }
-  @media (min-width: 600px) {
-    .container{
-      padding: 0 100px;
+
+  @media (min-width: 410px) {
+    .intro {
+      margin-top: 88px;
+      padding: 0 10px;
     }
+    .call_action {
+      margin: auto;
+      margin-top: 20px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .header {
+      padding: 20px 25px 0;
+  }
     .site_name{
       float: left;
     }
     .nav{
       padding: 0;
+      padding-top: 12px;
       margin-top: 0;
       float: right;
     }
@@ -100,9 +136,44 @@ html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
       margin: 0 0 0 25px;
     }
     .intro {
-      margin-top: 40vh;
+      margin-top: 33vh;
       letter-spacing: 5px;
+      margin-bottom: 20px;
       font-weight: bolder;
     }
+    .property {
+      width: 300px !important;
+      display: block !important;
+      margin: 0 10px 30px 10px !important;
+    }
+    .client-div, .agent-div {
+      padding: 100px 20px;
+    }
   }
-  
+
+@media screen and (min-width: 700px) {
+  .client-div, .agent-div {
+    display: inline-block;
+    width: 100%;
+  }
+  .agent-btn-div, .client-btn-div {
+    padding-top: 115px;
+  }
+  .client-intro, .client-btn-div{
+    width: 50%;
+    float: left;
+  }
+  .agent-intro, .agent-btn-div{
+    width: 50%;
+    float: right;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .show-case {
+    padding: 0 55px;
+  }
+  .property {
+    margin: 0 30px 30px 30px !important;
+  }
+}
