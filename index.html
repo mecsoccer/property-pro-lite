@@ -7,6 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="./UI/stylesheets/index.css">
+  <link rel="stylesheet" href="./UI/stylesheets/properties.css">
   <link rel="stylesheet" href="./UI/stylesheets/main.css">
   <link rel="stylesheet" href="./UI/stylesheets/responsive.css">
   <link rel="icon" href="">
@@ -14,60 +15,125 @@
 <body>
 
     <div class="container">
-      <div class="header">
-        <div class="site_name"><img src="./UI/img/logo-white.svg"></div>
-        <div class="nav">
-          <button class="admin_button" title="login in as admin">
-            <a href="./UI/signin.html">Sign In</a>
-          </button>
-          <button class="attendant_button" title="login in as attendant">
-            <a href="./UI/signup.html">Sign Up</a>
-          </button>
+      <div class="intro-img-div">
+        <div class="header">
+          <div class="site_name"><img src="./UI/img/logo-white.svg"></div>
+          <div class="nav">
+            <button class="admin_button" title="login in as admin">
+              <a href="./UI/signin.html">Agent</a>
+            </button>
+            <button class="attendant_button" title="login in as attendant">
+              <a href="./UI/client-signin.html">Client</a>
+            </button>
+          </div>
+        </div>
+        <h2 class="intro">discover valuable properties</h2>
+        <div class="centered">
+            <button class="call_action eighteen bold">
+              <a href="./UI/signup.html">GET STARTED</a>
+            </button>
         </div>
       </div>
-
-      <h2 class="intro">buy, sell and rent</h2>
-      <h5 class="sub_intro">lots of properties await you</h5>
-
-      <div class="centered">
-          <button class="call_action">
-            <a href="./UI/signup.html">GET STARTED</a>
-          </button>
+      <div class="index-main">
+        <div class="show-case align-center">
+          <div class="property">
+            <div class="property-image">
+                <a href="./UI/client-properties.html" class="format-link">
+                    <img src="./UI/img/prop2.jpg">
+                </a>
+            </div>
+            <div class="property-desc">
+                <div>
+                    <span class="cost twenty accent-fg-3">$100,000</span>
+                    <img class="location" src="./UI/img/location.svg">
+                </div>
+                <p class="street bold">no. 36 araromi street, onike</p>
+                <div>
+                    <span class="city bold">Yaba, Lagos</span>
+                </div>
+            </div>
+          </div>
+          <div class="property">
+            <div class="property-image">
+                <a href="./UI/client-properties.html" class="format-link">
+                    <img src="./UI/img/prop1.jpg">
+                </a>
+            </div>
+            <div class="property-desc">
+                <div>
+                    <span class="cost twenty accent-fg-3">$100,000</span>
+                    <img class="location" src="./UI/img/location.svg">
+                </div>
+                <p class="street bold">no. 36 araromi street, onike</p>
+                <div>
+                    <span class="city bold">Yaba, Lagos</span>
+                </div>
+            </div>
+          </div>
+          <div class="property">
+            <div class="property-image">
+                <a href="./UI/client-properties.html" class="format-link">
+                    <img src="./UI/img/prop3.jpeg">
+                </a>
+            </div>
+            <div class="property-desc">
+                <div>
+                    <span class="cost twenty accent-fg-3">$100,000</span>
+                    <img class="location" src="./UI/img/location.svg">
+                </div>
+                <p class="street bold">no. 36 araromi street, onike</p>
+                <div>
+                    <span class="city bold">Yaba, Lagos</span>
+                </div>
+            </div>
+          </div>
+          <div class="property">
+            <div class="property-image">
+                <a href="./UI/client-properties.html" class="format-link">
+                    <img src="./UI/img/prop1.jpg">
+                </a>
+            </div>
+            <div class="property-desc">
+                <div>
+                    <span class="cost twenty accent-fg-3">$100,000</span>
+                    <img class="location" src="./UI/img/location.svg">
+                </div>
+                <p class="street bold">no. 36 araromi street, onike</p>
+                <div>
+                    <span class="city bold">Yaba, Lagos</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="client-div accent-bg-2">
+          <div class="client-intro align-center accent-fg-1">
+            <p>Be the first to hear about new properties in town</p>
+            <p>Connect with best agents available</p>
+            <p>Choose a perfect home for your family</p>
+          </div>
+          <div class="client-btn-div align-center">
+            <a href="./UI/client-signin.html">
+              <button class="accent-bg-3 white-text pointer">Become a Client</button>
+            </a>
+          </div>
+        </div>
+        <div class="agent-div">
+          <div class="agent-intro align-center accent-fg-1">
+            <p>Be the first to hear about new properties in town</p>
+            <p>Connect with best agents available</p>
+            <p>Choose a perfect home for your family</p>
+          </div>
+          <div class="agent-btn-div align-center">
+            <a href="./UI/signin.html">
+              <button class="dom-color-bg white-text pointer">Become an Agent</button>
+            </a>
+          </div>
+        </div>
       </div>
-
+      <div class="footer accent-bg-1">
+          <p class="white-text align-center">© PropertyPro-lite, 2019</p>
+      </div>
     </div>
-
-  <script>
-    const submit = document.querySelector('.sign-in-button');
-
-    submit.addEventListener('click', () => {
-      const usernameInput = document.querySelector('#username').value;
-      const passwordInput = document.querySelector('#password').value;
-      signIn({ usernameInput, passwordInput });
-    })
-    
-    function signIn(loginDetails) {
-      return fetch('https://stark-crag-43885.herokuapp.com/api/v1/auth/login', {
-        method: 'POST',
-        credentials: 'omit',
-        headers: { 'Content-Type': 'application/json'},
-        mode: 'cors',
-        body: JSON.stringify(loginDetails)
-      })
-      .then(function(response) {
-        const responseJson = response.json();
-        return responseJson;
-      })
-      .then((data) => {
-        sessionStorage.setItem('user', data.username);
-        sessionStorage.setItem('token', data.token);
-        window.location.assign('./UI/cart.html');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-  </script>
   
 </body>
 </html>
