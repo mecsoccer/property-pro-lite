@@ -4,39 +4,21 @@ html, body, div, span, nav, a, button, img, input, header, ul, li, select, optio
 html{
     width: 100%;
     height: 100%;
-<<<<<<< HEAD
-}
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background: url('../img/background.jpg');
-=======
     background: white;
 }
 body {
     height: 100%;
     margin: 0;
     background: url('../img/night-view.jpg');
->>>>>>> ft-ui-templates
     font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
 }
 .mask{
     width: 100%;
     height: 100%;
-<<<<<<< HEAD
-    background: rgb(0, 0, 0, 0.4);
-    z-index: 1;
-    position: fixed;
-}
-.logo-div{
-    margin-top: 25px;
-=======
     padding-top: 25px;
     z-index: 1;
 }
 .logo-div{
->>>>>>> ft-ui-templates
     margin-left: 50px;
     cursor: pointer;
     width: fit-content;
@@ -45,15 +27,6 @@ svg{
     width: 150px;
     height: 35px;
 }
-<<<<<<< HEAD
-.sign-up {
-    background: white;
-    width: auto;
-    padding: 50px;
-    margin: 50px 5px;
-    overflow-y: auto;
-    border-radius: 5px;
-=======
 .sign-in {
     background: white;
     width: auto;
@@ -61,7 +34,6 @@ svg{
     margin: 30px 5px;
     border-radius: 5px;
     overflow-y: auto;
->>>>>>> ft-ui-templates
 }
 .text-field {
     height: 45px;
@@ -91,12 +63,9 @@ svg{
     font-weight: bold;
     font-size: 24px;
 }
-<<<<<<< HEAD
-=======
 .or{
     margin: 0 10px;
 }
->>>>>>> ft-ui-templates
 .center-text {
     margin: auto;
     text-align: center;
@@ -111,12 +80,9 @@ svg{
 .centered {
     margin: auto;
 }
-<<<<<<< HEAD
-=======
 .pointer{
     cursor: pointer;
 }
->>>>>>> ft-ui-templates
 .dom-color-bg {
     background-color: #27C063;
 }
@@ -131,16 +97,6 @@ svg{
 }
 
 @media screen and (min-width: 600px) {
-<<<<<<< HEAD
-    .sign-up{
-        background-color: white;
-        box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
-        margin: auto;
-        width: 400px;
-        overflow-y: auto;
-    }
-}
-=======
     .sign-in{
         background-color: white;
         box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
@@ -151,4 +107,3 @@ svg{
         overflow-y: auto;
     }
 }
->>>>>>> ft-ui-templates
