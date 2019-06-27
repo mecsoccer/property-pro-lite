@@ -1,9 +1,12 @@
 import express from 'express';
+import UserController from '../controllers/userController';
+import Validation from '../middlewares/validation/userValidation';
+
+const { validateUser } = Validation;
+const { signUpUser } = UserController;
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).send('worked!!!');
-});
+router.post('/users', validateUser, signUpUser);
 
 export default router;
