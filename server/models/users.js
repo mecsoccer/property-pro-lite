@@ -1,16 +1,17 @@
 /* eslint-disable camelcase */
+import bcrypt from 'bcryptjs';
 import UserStore from '../db/userStore';
 
 class UserOperations {
   static createUser(userDetail) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const {
-        email, first_name, last_name, password, phoneNumber, address, is_admin,
+        token, email, first_name, last_name, password, phoneNumber, address, is_admin,
       } = userDetail;
-      // eslint-disable-next-line no-param-reassign
-      const noOfUsers = UserStore.length;
+      const id = UserStore.length + 1;
+      const hash = bcrypt.hashSync(password, 10);
       const newUser = {
-        id: noOfUsers + 1, email, first_name, last_name, password, phoneNumber, address, is_admin,
+        token, id, email, first_name, last_name, password: hash, phoneNumber, address, is_admin,
       };
       let error;
 
@@ -23,8 +24,20 @@ class UserOperations {
 
       if (error) return;
       UserStore.push(newUser);
-      const data = { email, first_name, last_name, phoneNumber, address, is_admin };
+      const data = { token, id, first_name, last_name, email, is_admin };
       resolve({ statusCode: 201, data, status: 'success' });
+    });
+  }
+
+  static loginUser(email, password) {
+    return new Promise((resolve) => {
+      const user = UserStore.filter(item => item.email === email)[0];
+
+      if (!user || !bcrypt.compareSync(password, user.password)) {
+        resolve({ statusCode: 401, error: 'incorrect email or password', status: 'error' });
+      }
+
+      resolve({ statusCode: 200, data: user, status: 'success' });
     });
   }
 }

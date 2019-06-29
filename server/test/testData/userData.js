@@ -69,6 +69,22 @@ const Users = {
     address: 'esiri close, ayobo, lagos state',
     is_admin: 'false',
   },
+  correctSignin: {
+    email: 'user1@email.com',
+    password: 'doe-john',
+  },
+  wrongSignInPassword: {
+    email: 'user1@email.com',
+    password: 'adaDE##112343',
+  },
+  wrongSignInEmail: {
+    email: 'wrong@email.com',
+    password: 'adaDE##112343',
+  },
+  invalidSignInPassword: {
+    email: 'user4@email.com',
+    password: '',
+  },
 };
 
 export default Users;
