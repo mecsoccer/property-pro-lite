@@ -2,9 +2,7 @@ class Validate {
   static validateTextField(field, input, min = 2, max = 10, regEx, example, required = true) {
     let message = '';
 
-    /* istanbul ignore if */if (required === false) {
-      message = true;
-    } else if (!input) {
+    /* istanbul ignore if */if (!input) {
       message = { error: `${field} must be included`, field };
     } else if (input.length < min || input.length > max) {
       message = { error: `${field} length should be between ${min} and ${max} character(s)`, field };
@@ -13,6 +11,8 @@ class Validate {
     } else {
       message = true;
     }
+
+    if (!input && required === false) message = true;
 
     return message;
   }
@@ -25,9 +25,7 @@ class Validate {
     const regEx3 = /[0-9]+/g;
     const regEx4 = /[@#$]+/g;
 
-    /* istanbul ignore if */if (required === false) {
-      message = true;
-    } else if (!input) {
+    /* istanbul ignore if */if (!input) {
       message = { error: `${field} must be included`, field };
     } else if (input.length < min || input.length > max) {
       message = { error: `${field} length should be between ${min} and ${max} character(s)`, field };
@@ -42,6 +40,8 @@ class Validate {
     } else {
       message = true;
     }
+
+    if (!input && required === false) message = true;
 
     return message;
   }
