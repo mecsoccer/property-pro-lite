@@ -7,7 +7,7 @@ import PropertyValidation from '../middlewares/validation/propertyValidation';
 const { validateUser, validateSignin } = UserValidation;
 const { validateProperty } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
-const { createNewProperty, getAllProperties } = PropertyController;
+const { createNewProperty, getAllProperties, getPropertyById } = PropertyController;
 
 const router = express.Router();
 
@@ -16,5 +16,6 @@ router.post('/auth/signin', validateSignin, signInUser);
 
 router.post('/properties', validateProperty, createNewProperty);
 router.get('/properties', getAllProperties);
+router.get('/properties/:id', getPropertyById);
 
 export default router;

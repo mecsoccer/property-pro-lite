@@ -8,7 +8,7 @@ class UserOperations {
       const {
         token, email, first_name, last_name, password, phoneNumber, address, is_admin,
       } = userDetail;
-      const id = UserStore.length + 1;
+      const id = `${UserStore.length + 1}`;
       const hash = bcrypt.hashSync(password, 10);
       const newUser = {
         token, id, email, first_name, last_name, password: hash, phoneNumber, address, is_admin,
@@ -38,6 +38,18 @@ class UserOperations {
       }
 
       resolve({ statusCode: 200, data: user, status: 'success' });
+    });
+  }
+
+  static getUserById(id) {
+    return new Promise((resolve) => {
+      UserStore.forEach((user) => {
+        if (user.id === id) {
+          resolve({ statusCode: 200, data: user, status: 'success' });
+        }
+      });
+
+      resolve({ statusCode: 404, error: 'user does not exist', status: 'error' });
     });
   }
 }

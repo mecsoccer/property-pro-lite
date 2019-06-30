@@ -139,5 +139,28 @@ describe('Tests for property Routes', () => {
           done();
         });
     });
+
+    it('should return a specific property', (done) => {
+      chai.request(app)
+        .get('/api/v1/properties/1')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('object');
+          expect(res.body.data).to.have.property('id').that.is.a('string');
+          expect(res.body.data).to.have.property('status').that.is.a('string');
+          expect(res.body.data).to.have.property('type').that.is.a('string');
+          expect(res.body.data).to.have.property('state').that.is.a('string');
+          expect(res.body.data).to.have.property('city').that.is.a('string');
+          expect(res.body.data).to.have.property('address').that.is.a('string');
+          expect(res.body.data).to.have.property('price').that.is.a('string');
+          expect(res.body.data).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data).to.have.property('image_url').that.is.a('string');
+          expect(res.body.data).to.have.property('ownerEmail').that.is.a('string');
+          expect(res.body.data).to.have.property('ownerPhoneNumber').that.is.a('string');
+          done();
+        });
+    });
   });
 });
