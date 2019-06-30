@@ -1,7 +1,7 @@
 const Users = [
   {
     token: 'adakda-33302-dadldsd445',
-    id: 1,
+    id: '1',
     email: 'user1@email.com',
     first_name: 'joe',
     last_name: 'doe',
@@ -11,7 +11,7 @@ const Users = [
   },
   {
     token: 'adakda-33302-tydldsd445',
-    id: 2,
+    id: '2',
     email: 'user2@email.com',
     first_name: 'joe',
     last_name: 'doe',
@@ -21,7 +21,7 @@ const Users = [
   },
   {
     token: 'adakda-33302-dadldsd489',
-    id: 3,
+    id: '3',
     email: 'user3@email.com',
     first_name: 'joe',
     last_name: 'doe',
@@ -31,7 +31,7 @@ const Users = [
   },
   {
     token: 'adakda-33102-dadldsd445',
-    id: 4,
+    id: '4',
     email: 'user4@email.com',
     first_name: 'joe',
     last_name: 'doe',

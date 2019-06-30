@@ -1,6 +1,6 @@
 const Properties = {
   newValidProperty: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 'lagos',
     city: 'ikeja',
@@ -18,7 +18,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidPrice: {
-    owner: 1,
+    owner: '1',
     price: '300000',
     state: 'lagos',
     city: 'ikeja',
@@ -27,7 +27,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidState: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 55342,
     city: 'ikeja',
@@ -36,7 +36,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidCity: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 'lagos',
     city: 34739,
@@ -45,7 +45,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidAddress: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 'lagos',
     city: 'ikeja',
@@ -54,7 +54,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidType: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 'lagos',
     city: 'ikeja',
@@ -63,7 +63,7 @@ const Properties = {
     image_url: 'https://images.com/img/myimage.png',
   },
   invalidImageUrl: {
-    owner: 1,
+    owner: '1',
     price: '300000.00',
     state: 'lagos',
     city: 'ikeja',
