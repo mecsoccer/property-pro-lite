@@ -126,4 +126,18 @@ describe('Tests for property Routes', () => {
         });
     });
   });
+
+  describe('tests for get routes', () => {
+    it('should return all properties', (done) => {
+      chai.request(app)
+        .get('/api/v1/properties')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('array');
+          done();
+        });
+    });
+  });
 });
