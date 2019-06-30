@@ -7,8 +7,8 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 const {
-  newValidUser, userInvalidEmail, userInvalidFirstName, userInvalidLastName,
-  userInvalidPassword, userInvalidPhone, userInvalidIsAdmin, invalidSignInPassword,
+  newValidUser, userInvalidEmail, userInvalidFirstName, userInvalidLastName, userInvalidPassword,
+  userInvalidAddress, userInvalidPhone, userInvalidIsAdmin, invalidSignInPassword,
   wrongSignInEmail, wrongSignInPassword, correctSignin,
 } = userData;
 
@@ -103,6 +103,19 @@ describe('Tests for User Routes', () => {
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(userInvalidPhone)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          expect(res.body).to.have.property('status').that.equals('error');
+          done();
+        });
+    });
+
+    it('- should return 422, error message and address as error field -', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send(userInvalidAddress)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(422);

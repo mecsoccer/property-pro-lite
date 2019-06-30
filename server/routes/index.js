@@ -1,13 +1,19 @@
 import express from 'express';
 import UserController from '../controllers/userController';
-import Validation from '../middlewares/validation/userValidation';
+import PropertyController from '../controllers/propertyController';
+import UserValidation from '../middlewares/validation/userValidation';
+import PropertyValidation from '../middlewares/validation/propertyValidation';
 
-const { validateUser, validateSignin } = Validation;
+const { validateUser, validateSignin } = UserValidation;
+const { validateProperty } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
+const { createNewProperty } = PropertyController;
 
 const router = express.Router();
 
 router.post('/auth/signup', validateUser, signUpUser);
 router.post('/auth/signin', validateSignin, signInUser);
+
+router.post('/properties', validateProperty, createNewProperty);
 
 export default router;

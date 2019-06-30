@@ -16,7 +16,7 @@ class Validation {
     const lastNameValid = validateTextField('last_name', last_name, 2, 30, /^[a-z]+$/gi, 'john, james');
     const passwordValid = validatePasswordField('password', password, 6, 16, 'dkSSD32336##');
     const phoneNumberValid = validateTextField('phoneNumber', phoneNumber, 5, 20, /^(\+234\d+|\d+)$/g, '08093457891');
-    const addressValid = validateTextField('address', address, 2, 250, /^[\w\s.,]+$/gi);
+    const addressValid = validateTextField('address', address, 2, 250, /^[\w\s.,]+$/gi, 'no.36 oniwaya rd. agege, lagos state');
 
     if (emailValid !== true) {
       res.status(422).json({ error: emailValid.error, status: 'error' });

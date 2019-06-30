@@ -59,6 +59,16 @@ const Users = {
     address: 'esiri close, ayobo, lagos state',
     is_admin: true,
   },
+  userInvalidAddress: {
+    id: 4,
+    email: 'user4@email.com',
+    first_name: 'joe',
+    last_name: 'doe',
+    password: 'adaDE##1123',
+    phoneNumber: '+23489026435503',
+    address: '#$daa',
+    is_admin: true,
+  },
   userInvalidIsAdmin: {
     id: 4,
     email: 'user4@email.com',
