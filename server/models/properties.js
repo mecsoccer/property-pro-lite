@@ -21,6 +21,12 @@ class PropertyOperations {
       resolve({ statusCode: 201, data, status: 'success' });
     });
   }
+
+  static getAll() {
+    return new Promise((resolve) => {
+      resolve({ statusCode: 200, data: PropertyStore, status: 'success' });
+    });
+  }
 }
 
 export default PropertyOperations;

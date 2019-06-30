@@ -11,6 +11,14 @@ class PropertyController {
         res.status(500).json(err);
       });
   }
+
+  static getAllProperties(req, res) {
+    propertyOperations.getAll()
+      .then((result) => {
+        const { statusCode, data, status } = result;
+        res.status(statusCode).json({ status, data });
+      });
+  }
 }
 
 export default PropertyController;
