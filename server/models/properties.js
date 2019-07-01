@@ -30,6 +30,13 @@ class PropertyOperations {
     });
   }
 
+  static getAllByType(type) {
+    return new Promise((resolve) => {
+      const properties = PropertyStore.filter(prop => prop.type === type);
+      resolve({ statusCode: 200, data: properties, status: 'success' });
+    });
+  }
+
   static getOneById(id) {
     return new Promise((resolve) => {
       PropertyStore.forEach((property) => {

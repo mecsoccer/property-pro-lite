@@ -162,5 +162,17 @@ describe('Tests for property Routes', () => {
           done();
         });
     });
+
+    it('should return all properties of a specific type', (done) => {
+      chai.request(app)
+        .get('/api/v1/properties/type/2 bedroom')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('array');
+          done();
+        });
+    });
   });
 });

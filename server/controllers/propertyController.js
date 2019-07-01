@@ -26,7 +26,7 @@ class PropertyController {
           })
           .catch(() => res.status(500).json('service unavailable'));
       })
-      .catch(() => res.status(500).json('service unavailable'));
+      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
   }
 
   static getAllProperties(req, res) {
@@ -34,7 +34,18 @@ class PropertyController {
       .then((result) => {
         const { statusCode, data, status } = result;
         res.status(statusCode).json({ status, data });
-      });
+      })
+      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
+  }
+
+  static getPropertiesByType(req, res) {
+    const { type } = req.params;
+    PropertyOperations.getAllByType(type)
+      .then((result) => {
+        const { statusCode, data, status } = result;
+        res.status(statusCode).json({ status, data });
+      })
+      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
   }
 
   static getPropertyById(req, res) {
@@ -48,7 +59,7 @@ class PropertyController {
         const { statusCode, data, status } = result;
         res.status(statusCode).json({ status, data });
       })
-      .catch();
+      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
   }
 }
 
