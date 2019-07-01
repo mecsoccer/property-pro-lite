@@ -45,7 +45,7 @@ const Properties = [
     state: 'lagos',
     city: 'ikeja',
     address: 'computer village',
-    type: '2 bedroom',
+    type: 'duplex',
     created_on: new Date(),
     image_url: 'https://images.com/img/myimage.png',
     ownerEmail: 'owner4@email.com',
