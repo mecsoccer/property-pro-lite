@@ -21,5 +21,6 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port, '0.0.0.0');
+console.log('server listening at:', port);
 
 export default server;

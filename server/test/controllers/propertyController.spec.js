@@ -175,4 +175,31 @@ describe('Tests for property Routes', () => {
         });
     });
   });
+
+  describe('tests for delete route', () => {
+    it('should delete property', (done) => {
+      chai.request(app)
+        .delete('/api/v1/properties/5')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('object');
+          expect(res.body.data).to.have.property('id');
+          done();
+        });
+    });
+
+    it('should return 404 for non-existing id delete property', (done) => {
+      chai.request(app)
+        .delete('/api/v1/properties/0')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(404);
+          expect(res.body).to.have.property('status').that.equals('error');
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+  });
 });

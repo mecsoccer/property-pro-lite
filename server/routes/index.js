@@ -9,6 +9,7 @@ const { validateProperty } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
 const {
   createNewProperty, getAllProperties, getPropertyById, getPropertiesByType,
+  deleteProperty,
 } = PropertyController;
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.post('/properties', validateProperty, createNewProperty);
 router.get('/properties', getAllProperties);
 router.get('/properties/:id', getPropertyById);
 router.get('/properties/type/:type', getPropertiesByType);
+router.delete('/properties/:id', deleteProperty);
 
 export default router;

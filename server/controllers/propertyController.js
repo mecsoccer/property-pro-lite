@@ -26,7 +26,7 @@ class PropertyController {
           })
           .catch(() => res.status(500).json('service unavailable'));
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getAllProperties(req, res) {
@@ -35,7 +35,7 @@ class PropertyController {
         const { statusCode, data, status } = result;
         res.status(statusCode).json({ status, data });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getPropertiesByType(req, res) {
@@ -45,7 +45,7 @@ class PropertyController {
         const { statusCode, data, status } = result;
         res.status(statusCode).json({ status, data });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getPropertyById(req, res) {
@@ -59,7 +59,17 @@ class PropertyController {
         const { statusCode, data, status } = result;
         res.status(statusCode).json({ status, data });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json('service unavailable'));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+  }
+
+  static deleteProperty(req, res) {
+    const { id } = req.params;
+    PropertyOperations.deleteOne(id)
+      .then((result) => {
+        if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
+        return res.status(200).json({ status: 'success', data: result });
+      })
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 }
 
