@@ -48,6 +48,15 @@ class PropertyOperations {
       resolve({ statusCode: 404, error: 'property does not exist', status: 'error' });
     });
   }
+
+  static deleteOne(id) {
+    return new Promise((resolve) => {
+      if (id <= 0) resolve(false);
+      const deleted = PropertyStore.splice(id - 1, 1);
+      if (!deleted[0]) resolve(false);
+      resolve(deleted[0]);
+    });
+  }
 }
 
 export default PropertyOperations;
