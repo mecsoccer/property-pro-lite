@@ -5,11 +5,11 @@ import UserValidation from '../middlewares/validation/userValidation';
 import PropertyValidation from '../middlewares/validation/propertyValidation';
 
 const { validateUser, validateSignin } = UserValidation;
-const { validateProperty } = PropertyValidation;
+const { validateProperty, validatePropertyUpdate } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
 const {
   createNewProperty, getAllProperties, getPropertyById, getPropertiesByType,
-  deleteProperty,
+  deleteProperty, updateProperty,
 } = PropertyController;
 
 const router = express.Router();
@@ -21,6 +21,7 @@ router.post('/properties', validateProperty, createNewProperty);
 router.get('/properties', getAllProperties);
 router.get('/properties/:id', getPropertyById);
 router.get('/properties/type/:type', getPropertiesByType);
+router.patch('/properties/:id', validatePropertyUpdate, updateProperty);
 router.delete('/properties/:id', deleteProperty);
 
 export default router;

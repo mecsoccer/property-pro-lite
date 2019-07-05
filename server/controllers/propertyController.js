@@ -62,6 +62,16 @@ class PropertyController {
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
+  static updateProperty(req, res) {
+    const { id } = req.params;
+    PropertyOperations.updateOne(id, req.validData)
+      .then((result) => {
+        if (result === false) return res.status(404).json({ status: 'error', error: 'id does not exist' });
+        return res.status(200).json({ status: 'success', data: result });
+      })
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+  }
+
   static deleteProperty(req, res) {
     const { id } = req.params;
     PropertyOperations.deleteOne(id)

@@ -49,12 +49,26 @@ class PropertyOperations {
     });
   }
 
+  static updateOne(id, updates) {
+    return new Promise((resolve) => {
+      const property = PropertyStore[id - 1];
+      if (id <= 0 || !property) return resolve(false);
+
+      const updateKeys = Object.keys(updates);
+      updateKeys.forEach((key) => {
+        PropertyStore[id - 1][key] = updates[key];
+      });
+
+      return resolve(PropertyStore[id - 1]);
+    });
+  }
+
   static deleteOne(id) {
     return new Promise((resolve) => {
-      if (id <= 0) resolve(false);
+      if (id <= 0) return resolve(false);
       const deleted = PropertyStore.splice(id - 1, 1);
-      if (!deleted[0]) resolve(false);
-      resolve(deleted[0]);
+      if (!deleted[0]) return resolve(false);
+      return resolve(deleted[0]);
     });
   }
 }
