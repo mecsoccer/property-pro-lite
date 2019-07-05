@@ -71,6 +71,14 @@ const Properties = {
     type: '2 bedroom',
     image_url: [],
   },
+  validPropertyUpdate: {
+    price: '307000.00',
+    state: 'abia',
+    city: 'umuahia',
+    address: 'anywhere you go',
+    type: '3 bedroom',
+    image_url: '',
+  },
 };
 
 export default Properties;

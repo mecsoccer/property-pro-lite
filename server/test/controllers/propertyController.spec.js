@@ -8,7 +8,7 @@ const { expect } = chai;
 
 const {
   newValidProperty, invalidOwner, invalidPrice, invalidState, invalidCity,
-  invalidAddress, invalidType, invalidImageUrl,
+  invalidAddress, invalidType, invalidImageUrl, validPropertyUpdate,
 } = propertyData;
 
 describe('Tests for property Routes', () => {
@@ -176,10 +176,39 @@ describe('Tests for property Routes', () => {
     });
   });
 
+  describe('tests for patch route', () => {
+    it('should update property advert', (done) => {
+      chai.request(app)
+        .patch('/api/v1/properties/2')
+        .send(validPropertyUpdate)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('object');
+          expect(res.body.data).to.have.property('id');
+          done();
+        });
+    });
+
+    it('should return 404 if property id does not exist', (done) => {
+      chai.request(app)
+        .patch('/api/v1/properties/1000000000')
+        .send(validPropertyUpdate)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(404);
+          expect(res.body).to.have.property('status').that.equals('error');
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+  });
+
   describe('tests for delete route', () => {
     it('should delete property', (done) => {
       chai.request(app)
-        .delete('/api/v1/properties/5')
+        .delete('/api/v1/properties/4')
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(200);
