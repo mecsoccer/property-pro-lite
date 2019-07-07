@@ -7,6 +7,7 @@
     "start": "node ./build/index.js",
     "devstart": "nodemon --exec babel-node ./server/index.js",
     "test": "nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"
   },
@@ -36,6 +37,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
+    "coveralls": "^3.0.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mocha": "^6.1.4",
