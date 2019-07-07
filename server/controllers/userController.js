@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import uuidv4 from 'uuid';
+import uniqId from 'uniqid';
 import userOperations from '../models/users';
 
 const { createUser, loginUser } = userOperations;
@@ -9,20 +9,22 @@ class UserController {
     const {
       email, first_name, last_name, password, phoneNumber, address, is_admin,
     } = req.validData;
-    const token = uuidv4();
     const newUser = {
-      token, email, first_name, last_name, password, phoneNumber, address, is_admin,
+      token: uniqId(), email, first_name, last_name, password, phoneNumber, address, is_admin,
     };
     createUser(newUser)
       .then((result) => {
-        if (result.error) return res.status(result.statusCode).json({ status: 'error', error: result.error });
-        const { statusCode, data, status } = result;
-        data.token = uuidv4();
-        res.status(statusCode).json({ status, data });
+        const {
+          token: tk, id, first_name: first, last_name: last, email: mail, is_admin: admin,
+        } = result;
+        res.status(201).json({
+          status: 'success',
+          data: {
+            token: tk, id, first_name: first, last_name: last, email: mail, is_admin: admin,
+          },
+        });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(() => res.status(409).json({ status: 'error', error: 'user already exists' }));
   }
 
   static signInUser(req, res) {
