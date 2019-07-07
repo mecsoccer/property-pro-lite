@@ -1,32 +1,23 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcryptjs';
 import UserStore from '../db/userStore';
+import pool from '../db/migration';
 
 class UserOperations {
-  static createUser(userDetail) {
-    return new Promise((resolve) => {
-      const {
-        token, email, first_name, last_name, password, phoneNumber, address, is_admin,
-      } = userDetail;
-      const id = `${UserStore.length + 1}`;
-      const hash = bcrypt.hashSync(password, 10);
-      const newUser = {
-        token, id, email, first_name, last_name, password: hash, phoneNumber, address, is_admin,
-      };
-      let error;
+  static createUser(userDetails) {
+    const {
+      token, email, first_name, last_name, password, phoneNumber, address, is_admin,
+    } = userDetails;
 
-      UserStore.forEach((user) => {
-        if (user.email === email) {
-          error = 'user already exists';
-          resolve({ statusCode: 409, error, status: 'error' });
-        }
-      });
+    const hash = bcrypt.hashSync(password, 10);
 
-      if (error) return;
-      UserStore.push(newUser);
-      const data = { token, id, first_name, last_name, email, is_admin };
-      resolve({ statusCode: 201, data, status: 'success' });
-    });
+    const query = {
+      text: 'INSERT INTO users(token, email, first_name, last_name, password, phoneNumber, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+      values: [token, email, first_name, last_name, hash, phoneNumber, address, is_admin],
+    };
+
+    return pool.query(query)
+      .then(user => user.rows[0]);
   }
 
   static loginUser(email, password) {
