@@ -153,6 +153,7 @@ describe('Tests for User Routes', () => {
           expect(res.body.data).to.have.property('first_name').that.is.a('string');
           expect(res.body.data).to.have.property('last_name').that.is.a('string');
           expect(res.body.data).to.have.property('email').that.is.a('string');
+          expect(res.body.data).to.have.property('JWT').that.is.a('string');
           done();
         });
     });
