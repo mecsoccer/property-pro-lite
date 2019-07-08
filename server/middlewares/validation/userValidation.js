@@ -33,10 +33,6 @@ class Validation {
     } else if (typeof is_admin !== 'boolean') {
       res.status(422).json({ error: 'is_admin field must be a boolean', status: 'error' });
     } else {
-      const hash = bcrypt.hashSync(password, 10);
-      req.validData = {
-        email, first_name, last_name, password: hash, phoneNumber, address, is_admin,
-      };
       next();
     }
   }

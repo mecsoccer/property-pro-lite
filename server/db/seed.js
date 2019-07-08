@@ -27,13 +27,13 @@ function migrateProperty(
   pool.query(query);
 }
 
-migrateUser('adakda-33302-dadldsd445', 'user1@email.com', 'joe', 'doe', '$2a$10$0wYS1HaHki4iCCDABlPV9emqhUgaB.Sc3FrO/nbDo1WDeGK9yqT32',
+migrateUser('adakda-33302-dadldsd445', 'user1@email.com', 'joe', 'doe', 'doe-john',
   '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-tydldsd445', 'user2@email.com', 'joe', 'doe', '$2a$10$BPo6ueIAVGKoFwAIpR8qF.zlKOXwH1BfizZ6O93ws2xIGHA4Qa2WO',
+migrateUser('adakda-33302-tydldsd445', 'user2@email.com', 'joe', 'doe', 'john_doe',
   '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-dadldsd489', 'user3@email.com', 'joe', 'doe', '$2a$10$3kBZp02U6GNFPqvFgNp8q.pZWnthnz4EDU3FPvdbdamV69Lin0rLa',
+migrateUser('adakda-33302-dadldsd489', 'user3@email.com', 'joe', 'doe', 'doe',
   '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-dadldsd489', 'user4@email.com', 'joe', 'doe', '$2a$10$2B14cJ4u5SZLBOw1.0K.I.FnnJxne2MspopQTFTdgzgbDa9XNMOMG',
+migrateUser('adakda-33302-dadldsd489', 'user4@email.com', 'joe', 'doe', 'j-doe',
   '08094232222', 'esiri close, ayobo, lagos state', false);
 
 migrateProperty('1', 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
