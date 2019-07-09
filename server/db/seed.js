@@ -36,11 +36,11 @@ migrateUser('adakda-33302-dadldsd489', 'user3@email.com', 'joe', 'doe', 'doe',
 migrateUser('adakda-33302-dadldsd489', 'user4@email.com', 'joe', 'doe', 'j-doe',
   '08094232222', 'esiri close, ayobo, lagos state', false);
 
-migrateProperty('1', 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
+migrateProperty(1, 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
   'bq', new Date(), 'https://img.com/img/house.png');
-migrateProperty('2', 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
+migrateProperty(2, 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
   'bq', new Date(), 'https://img.com/img/house.png');
-migrateProperty('3', 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
+migrateProperty(3, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');
-migrateProperty('4', 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
+migrateProperty(4, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');

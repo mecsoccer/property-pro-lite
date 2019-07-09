@@ -157,8 +157,8 @@ describe('Tests for property Routes', () => {
           expect(res.body.data).to.have.property('price').that.is.a('string');
           expect(res.body.data).to.have.property('created_on').that.is.a('string');
           expect(res.body.data).to.have.property('image_url').that.is.a('string');
-          expect(res.body.data).to.have.property('ownerEmail').that.is.a('string');
-          expect(res.body.data).to.have.property('ownerPhoneNumber').that.is.a('string');
+          expect(res.body.data).to.have.property('ownerEmail' || 'ownerEmail').that.is.a('string');
+          expect(res.body.data).to.have.property('ownerPhoneNumber' || 'ownerPhoneNumber').that.is.a('string');
           done();
         });
     });
