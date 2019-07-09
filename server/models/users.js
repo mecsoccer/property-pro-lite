@@ -7,7 +7,7 @@ import pool from '../db/migration';
 
 dotenv.config();
 
-const secret = process.env.SECRET;
+const secret = process.env.SECRET_KEY || '';
 
 class UserOperations {
   static createUser(userDetails) {

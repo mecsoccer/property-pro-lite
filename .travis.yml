@@ -3,8 +3,6 @@ node_js:
   - "stable"
 services:
   - postgresql
-env:
-  - SECRET_KEY=jaachi_secret
 cache:
   directories:
     - "node_modules"

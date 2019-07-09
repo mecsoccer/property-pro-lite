@@ -1,5 +1,6 @@
 /* eslint-disable object-property-newline */
 /* eslint-disable camelcase */
+import pool from '../db/migration';
 import PropertyStore from '../db/propertyStore';
 
 class PropertyOperations {
@@ -25,9 +26,10 @@ class PropertyOperations {
   }
 
   static getAll() {
-    return new Promise((resolve) => {
-      resolve({ statusCode: 200, data: PropertyStore, status: 'success' });
-    });
+    const text = `SELECT *, users.email As ownerEmail, users.phonenumber As ownerPhoneNumber
+      FROM properties INNER JOIN users ON properties.owner=users.id`;
+    return pool.query(text)
+      .then(data => data.rows);
   }
 
   static getAllByType(type) {

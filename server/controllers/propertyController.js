@@ -31,10 +31,7 @@ class PropertyController {
 
   static getAllProperties(req, res) {
     PropertyOperations.getAll()
-      .then((result) => {
-        const { statusCode, data, status } = result;
-        res.status(statusCode).json({ status, data });
-      })
+      .then(result => res.status(200).json({ status: 'success', data: result }))
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
