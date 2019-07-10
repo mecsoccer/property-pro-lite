@@ -4,25 +4,16 @@ import pool from '../db/migration';
 import PropertyStore from '../db/propertyStore';
 
 class PropertyOperations {
-  static createProperty(propertyDetail) {
-    return new Promise((resolve) => {
-      const {
-        price, state, city, address, type, image_url, ownerEmail, ownerPhoneNumber,
-      } = propertyDetail;
-      const id = String(PropertyStore.length + 1);
-      const created_on = new Date();
-      const status = 'available';
-      const newProperty = {
-        id, status, price, state, city, address, type, created_on,
-        image_url, ownerEmail, ownerPhoneNumber,
-      };
+  static createProperty(propertyDetails) {
+    const {
+      owner, price, status, state, city, address, type, created_on, image_url,
+    } = propertyDetails;
 
-      PropertyStore.push(newProperty);
-      const data = {
-        id, status, price, state, city, address, type, created_on, image_url,
-      };
-      resolve({ statusCode: 201, data, status: 'success' });
-    });
+    const text = 'INSERT INTO properties(owner, status, price, state, city, address, type, created_on, image_url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
+    const values = [owner, status, price, state, city, address, type, created_on, image_url];
+
+    return pool.query(text, values)
+      .then(data => data.rows[0]);
   }
 
   static getAll() {
