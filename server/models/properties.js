@@ -70,12 +70,8 @@ class PropertyOperations {
   }
 
   static deleteOne(id) {
-    return new Promise((resolve) => {
-      if (id <= 0) return resolve(false);
-      const deleted = PropertyStore.splice(id - 1, 1);
-      if (!deleted[0]) return resolve(false);
-      return resolve(deleted[0]);
-    });
+    return pool.query('DELETE FROM properties WHERE id=$1 returning *;', [id])
+      .then(data => data.rows[0]);
   }
 }
 
