@@ -17,17 +17,19 @@ class PropertyOperations {
   }
 
   static getAll() {
-    const text = `SELECT *, users.email As ownerEmail, users.phonenumber As ownerPhoneNumber
-      FROM properties INNER JOIN users ON properties.owner=users.id`;
+    const text = `SELECT properties.id,properties.status,properties.type,properties.state,properties.city,
+    properties.address,properties.price,properties.created_on,properties.image_url,users.email As ownerEmail, users.phonenumber As ownerPhoneNumber
+      FROM properties INNER JOIN users ON properties.owner=users.id;`;
     return pool.query(text)
       .then(data => data.rows);
   }
 
   static getAllByType(type) {
-    return new Promise((resolve) => {
-      const properties = PropertyStore.filter(prop => prop.type === type);
-      resolve({ statusCode: 200, data: properties, status: 'success' });
-    });
+    const text = `SELECT properties.id,properties.status,properties.type,properties.state,properties.city,
+    properties.address,properties.price,properties.created_on,properties.image_url,users.email As ownerEmail, users.phonenumber As ownerPhoneNumber
+      FROM properties INNER JOIN users ON properties.owner=users.id WHERE type=$1;`;
+    return pool.query(text, [type])
+      .then(data => data.rows);
   }
 
   static getOneById(id) {
