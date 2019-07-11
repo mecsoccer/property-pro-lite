@@ -19,8 +19,8 @@ router.post('/auth/signin', validateSignin, signInUser);
 
 router.post('/properties', validateProperty, createNewProperty);
 router.get('/properties', getAllProperties);
+router.get('/properties/type', getPropertiesByType);
 router.get('/properties/:id', getPropertyById);
-router.get('/properties/type/:type', getPropertiesByType);
 router.patch('/properties/:id', validatePropertyUpdate, updateProperty);
 router.patch('/properties/:id/sold', validatePropertyUpdate, markPropertySold);
 router.delete('/properties/:id', deleteProperty);

@@ -23,11 +23,11 @@ class PropertyController {
   }
 
   static getPropertiesByType(req, res) {
-    const { type } = req.params;
+    const { type } = req.query;
     PropertyOperations.getAllByType(type)
       .then((result) => {
-        const { statusCode, data, status } = result;
-        res.status(statusCode).json({ status, data });
+        if (!result[0]) return res.status(404).json({ status: 'error', error: 'property type specified not found' });
+        return res.status(200).json({ status: 'success', data: result });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
@@ -41,7 +41,7 @@ class PropertyController {
           return res.status(statusCode).json({ status, error });
         }
         const { statusCode, data, status } = result;
-        res.status(statusCode).json({ status, data });
+        return res.status(statusCode).json({ status, data });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
@@ -72,7 +72,7 @@ class PropertyController {
     PropertyOperations.deleteOne(id)
       .then((result) => {
         if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
-        return res.status(200).json({ status: 'success', data: result });
+        return res.status(200).json({ status: 'success', data: { message: 'delete successful' } });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
