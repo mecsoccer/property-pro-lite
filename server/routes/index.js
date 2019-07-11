@@ -9,7 +9,7 @@ const { validateProperty, validatePropertyUpdate } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
 const {
   createNewProperty, getAllProperties, getPropertyById, getPropertiesByType,
-  deleteProperty, updateProperty, updatePropertyImage,
+  deleteProperty, updateProperty, markPropertySold,
 } = PropertyController;
 
 const router = express.Router();
@@ -22,7 +22,7 @@ router.get('/properties', getAllProperties);
 router.get('/properties/:id', getPropertyById);
 router.get('/properties/type/:type', getPropertiesByType);
 router.patch('/properties/:id', validatePropertyUpdate, updateProperty);
-router.patch('/properties/:id/sold', validatePropertyUpdate, updatePropertyImage);
+router.patch('/properties/:id/sold', validatePropertyUpdate, markPropertySold);
 router.delete('/properties/:id', deleteProperty);
 
 export default router;

@@ -2,12 +2,11 @@
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import UserStore from '../db/userStore';
 import pool from '../db/migration';
 
 dotenv.config();
 
-const secret = process.env.SECRET_KEY || '';
+/* istanbul ignore next */const secret = process.env.SECRET_KEY || '';
 
 class UserOperations {
   static createUser(userDetails) {
@@ -47,18 +46,6 @@ class UserOperations {
 
         return { error: 'error' };
       });
-  }
-
-  static getUserById(id) {
-    return new Promise((resolve) => {
-      UserStore.forEach((user) => {
-        if (user.id === id) {
-          resolve({ statusCode: 200, data: user, status: 'success' });
-        }
-      });
-
-      resolve({ statusCode: 404, error: 'user does not exist', status: 'error' });
-    });
   }
 }
 

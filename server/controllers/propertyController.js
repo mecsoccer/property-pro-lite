@@ -48,17 +48,18 @@ class PropertyController {
 
   static updateProperty(req, res) {
     const { id } = req.params;
-    PropertyOperations.updateOne(id, req.validData)
+    const { owner } = req.body;
+    PropertyOperations.updateOne(id, owner, req.body)
       .then((result) => {
-        if (result === false) return res.status(404).json({ status: 'error', error: 'id does not exist' });
+        if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
         return res.status(200).json({ status: 'success', data: result });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
-  static updatePropertyImage(req, res) {
+  static markPropertySold(req, res) {
     const { id } = req.params;
-    PropertyOperations.updateOne(id, { status: 'sold' })
+    PropertyOperations.updateOneProp(id, { status: 'sold' })
       .then((result) => {
         if (result === false) return res.status(404).json({ status: 'error', error: 'id does not exist' });
         return res.status(200).json({ status: 'success', data: result });

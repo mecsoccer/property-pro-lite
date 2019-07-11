@@ -72,6 +72,7 @@ const Properties = {
     image_url: [],
   },
   validPropertyUpdate: {
+    owner: '1',
     price: '307000.00',
     state: 'abia',
     city: 'umuahia',
