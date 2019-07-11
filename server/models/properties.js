@@ -42,7 +42,20 @@ class PropertyOperations {
     });
   }
 
-  static updateOne(id, updates) {
+  static updateOne(id, owner, updates) {
+    const {
+      price, state, city, address, type, image_url,
+    } = updates;
+
+    const text = `UPDATE properties SET price=$1, state=$2,
+      city=$3, address=$4, type=$5, image_url=$6 WHERE id=$7 AND owner=$8 returning *;`;
+    const values = [price, state, city, address, type, image_url, id, owner];
+
+    return pool.query(text, values)
+      .then(data => data.rows[0]);
+  }
+
+  static updateOneProp(id, updates) {
     return new Promise((resolve) => {
       const property = PropertyStore[id - 1];
       if (id <= 0 || !property) return resolve(false);

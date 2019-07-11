@@ -179,7 +179,7 @@ describe('Tests for property Routes', () => {
   describe('tests for patch route', () => {
     it('should update property advert', (done) => {
       chai.request(app)
-        .patch('/api/v1/properties/2')
+        .patch('/api/v1/properties/1')
         .send(validPropertyUpdate)
         .end((err, res) => {
           expect(err).to.equal(null);
