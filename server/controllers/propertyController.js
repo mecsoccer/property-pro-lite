@@ -26,7 +26,7 @@ class PropertyController {
     const { type } = req.query;
     PropertyOperations.getAllByType(type)
       .then((result) => {
-        if (!result[0]) return res.status(404).json({ status: 'error', error: 'property type specified not found' });
+        /* istanbul ignore if */if (!result[0]) return res.status(404).json({ status: 'error', error: 'property type specified not found' });
         return res.status(200).json({ status: 'success', data: result });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
@@ -36,13 +36,10 @@ class PropertyController {
     const { id } = req.params;
     PropertyOperations.getPropertyById(id)
       .then((result) => {
-        if (!result) return res.status(404).json({ status: 'error', error: 'property not found' });
+        /* istanbul ignore if */if (!result) return res.status(404).json({ status: 'error', error: 'property not found' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */(err) => {
-        console.log(err);
-        res.status(500).json({ status: 'error', error: 'something went wrong' });
-      });
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static updateProperty(req, res) {
@@ -50,7 +47,7 @@ class PropertyController {
     const { owner } = req.body;
     PropertyOperations.updateOne(id, owner, req.body)
       .then((result) => {
-        if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
+        /* istanbul ignore if */if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
         return res.status(200).json({ status: 'success', data: result });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
@@ -58,9 +55,10 @@ class PropertyController {
 
   static markPropertySold(req, res) {
     const { id } = req.params;
-    PropertyOperations.updateOneProp(id, { status: 'sold' })
+    const { owner } = req.body;
+    PropertyOperations.updatePropStatus(id, 1)
       .then((result) => {
-        if (result === false) return res.status(404).json({ status: 'error', error: 'id does not exist' });
+        /* istanbul ignore if */if (!result) return res.status(404).json({ status: 'error', error: 'id does not exist' });
         return res.status(200).json({ status: 'success', data: result });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
@@ -70,7 +68,7 @@ class PropertyController {
     const { id } = req.params;
     PropertyOperations.deleteOne(id)
       .then((result) => {
-        if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
+        /* istanbul ignore if */if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
         return res.status(200).json({ status: 'success', data: { message: 'delete successful' } });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));

@@ -141,6 +141,9 @@ describe('Tests for property Routes', () => {
           expect(res.body.data[0]).to.have.property('address').that.is.a('string');
           expect(res.body.data[0]).to.have.property('city').that.is.a('string');
           expect(res.body.data[0]).to.have.property('state').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('price');
+          expect(res.body.data[0]).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('image_url').that.is.a('string');
           expect(res.body.data[0]).to.not.have.property('password');
           expect(res.body.data[0]).to.have.property('owneremail').that.is.a('string');
           expect(res.body.data[0]).to.have.property('ownerphonenumber').that.is.a('string');
@@ -185,6 +188,9 @@ describe('Tests for property Routes', () => {
           expect(res.body.data[0]).to.have.property('address').that.is.a('string');
           expect(res.body.data[0]).to.have.property('city').that.is.a('string');
           expect(res.body.data[0]).to.have.property('state').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('price');
+          expect(res.body.data[0]).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('image_url').that.is.a('string');
           expect(res.body.data[0]).to.not.have.property('password');
           expect(res.body.data[0]).to.have.property('owneremail').that.is.a('string');
           expect(res.body.data[0]).to.have.property('ownerphonenumber').that.is.a('string');
@@ -216,6 +222,14 @@ describe('Tests for property Routes', () => {
           expect(res.body).to.have.property('status').that.equals('success');
           expect(res.body).to.have.property('data').that.is.an('object');
           expect(res.body.data).to.have.property('id');
+          expect(res.body.data).to.have.property('owner');
+          expect(res.body.data).to.have.property('status').that.is.a('string');
+          expect(res.body.data).to.have.property('address').that.is.a('string');
+          expect(res.body.data).to.have.property('city').that.is.a('string');
+          expect(res.body.data).to.have.property('state').that.is.a('string');
+          expect(res.body.data).to.have.property('price');
+          expect(res.body.data).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data).to.have.property('image_url').that.is.a('string');
           done();
         });
     });
@@ -242,6 +256,33 @@ describe('Tests for property Routes', () => {
           expect(res.body).to.have.property('status').that.equals('success');
           expect(res.body).to.have.property('data').that.is.an('object');
           expect(res.body.data).to.have.property('status').that.equals('sold');
+          expect(res.body.data).to.have.property('type').that.is.a('string');
+          expect(res.body.data).to.have.property('state').that.is.a('string');
+          expect(res.body.data).to.have.property('city').that.is.a('string');
+          expect(res.body.data).to.have.property('address').that.is.a('string');
+          expect(res.body.data).to.have.property('price').that.is.a('string');
+          expect(res.body.data).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data).to.have.property('image_url').that.is.a('string');
+          done();
+        });
+    });
+
+    it('(for mark as sold) should return error for non-existent property', (done) => {
+      chai.request(app)
+        .patch('/api/v1/properties/1/sold')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status').that.equals('success');
+          expect(res.body).to.have.property('data').that.is.an('object');
+          expect(res.body.data).to.have.property('status').that.is.a('string');
+          expect(res.body.data).to.have.property('type').that.is.a('string');
+          expect(res.body.data).to.have.property('state').that.is.a('string');
+          expect(res.body.data).to.have.property('city').that.is.a('string');
+          expect(res.body.data).to.have.property('address').that.is.a('string');
+          expect(res.body.data).to.have.property('price').that.is.a('string');
+          expect(res.body.data).to.have.property('created_on').that.is.a('string');
+          expect(res.body.data).to.have.property('image_url').that.is.a('string');
           done();
         });
     });

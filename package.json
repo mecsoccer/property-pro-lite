@@ -15,6 +15,14 @@
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"
   },
+  "nyc": {
+    "exclude": [
+      "server/index.js",
+      "build",
+      "server/db/database.js",
+      "UI"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mecsoccer/property-pro-lite.git"

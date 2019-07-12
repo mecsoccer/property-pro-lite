@@ -1,7 +1,6 @@
 /* eslint-disable object-property-newline */
 /* eslint-disable camelcase */
 import pool from '../db/migration';
-import PropertyStore from '../db/propertyStore';
 
 class PropertyOperations {
   static createProperty(propertyDetails) {
@@ -53,18 +52,10 @@ class PropertyOperations {
       .then(data => data.rows[0]);
   }
 
-  static updateOneProp(id, updates) {
-    return new Promise((resolve) => {
-      const property = PropertyStore[id - 1];
-      if (id <= 0 || !property) return resolve(false);
-
-      const updateKeys = Object.keys(updates);
-      updateKeys.forEach((key) => {
-        PropertyStore[id - 1][key] = updates[key];
-      });
-
-      return resolve(PropertyStore[id - 1]);
-    });
+  static updatePropStatus(id, owner) {
+    const text = 'UPDATE properties SET status=$1 WHERE id=$2 AND owner=$3 returning *;';
+    return pool.query(text, ['sold', id, owner])
+      .then(data => data.rows[0]);
   }
 
   static deleteOne(id) {

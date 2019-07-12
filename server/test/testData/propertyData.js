@@ -78,7 +78,7 @@ const Properties = {
     city: 'umuahia',
     address: 'anywhere you go',
     type: '3 bedroom',
-    image_url: '',
+    image_url: 'https://updateimg.com/img/imageupdate.png',
   },
 };
 
