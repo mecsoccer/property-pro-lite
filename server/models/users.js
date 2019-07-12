@@ -6,7 +6,7 @@ import pool from '../db/migration';
 
 dotenv.config();
 
-/* istanbul ignore next */const secret = process.env.SECRET_KEY || '';
+/* istanbul ignore next */const secret = process.env.SECRET_KEY;
 
 class UserOperations {
   static createUser(userDetails) {
