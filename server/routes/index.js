@@ -8,7 +8,7 @@ const { validateUser, validateSignin } = UserValidation;
 const { validateProperty, validatePropertyUpdate } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
 const {
-  createNewProperty, getAllProperties, getPropertyById, getPropertiesByType,
+  createNewProperty, getAllProperties, getSingleProperty, getPropertiesByType,
   deleteProperty, updateProperty, markPropertySold,
 } = PropertyController;
 
@@ -20,7 +20,7 @@ router.post('/auth/signin', validateSignin, signInUser);
 router.post('/properties', validateProperty, createNewProperty);
 router.get('/properties', getAllProperties);
 router.get('/properties/type', getPropertiesByType);
-router.get('/properties/:id', getPropertyById);
+router.get('/properties/:id', getSingleProperty);
 router.patch('/properties/:id', validatePropertyUpdate, updateProperty);
 router.patch('/properties/:id/sold', validatePropertyUpdate, markPropertySold);
 router.delete('/properties/:id', deleteProperty);

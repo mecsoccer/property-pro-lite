@@ -32,16 +32,12 @@ class PropertyOperations {
       .then(data => data.rows);
   }
 
-  static getOneById(id) {
-    return new Promise((resolve) => {
-      PropertyStore.forEach((property) => {
-        if (property.id === id) {
-          resolve({ statusCode: 200, data: property, status: 'success' });
-        }
-      });
-
-      resolve({ statusCode: 404, error: 'property does not exist', status: 'error' });
-    });
+  static getPropertyById(id) {
+    const text = `SELECT properties.id,properties.status,properties.type,properties.state,properties.city,
+    properties.address,properties.price,properties.created_on,properties.image_url,users.email As ownerEmail, users.phonenumber As ownerPhoneNumber
+      FROM properties INNER JOIN users ON properties.owner=users.id WHERE properties.id=$1;`;
+    return pool.query(text, [id])
+      .then(data => data.rows[0]);
   }
 
   static updateOne(id, owner, updates) {

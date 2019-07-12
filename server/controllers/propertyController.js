@@ -32,18 +32,17 @@ class PropertyController {
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
-  static getPropertyById(req, res) {
+  static getSingleProperty(req, res) {
     const { id } = req.params;
-    PropertyOperations.getOneById(id)
+    PropertyOperations.getPropertyById(id)
       .then((result) => {
-        if (result.error) {
-          const { statusCode, error, status } = result;
-          return res.status(statusCode).json({ status, error });
-        }
-        const { statusCode, data, status } = result;
-        return res.status(statusCode).json({ status, data });
+        if (!result) return res.status(404).json({ status: 'error', error: 'property not found' });
+        return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */(err) => {
+        console.log(err);
+        res.status(500).json({ status: 'error', error: 'something went wrong' });
+      });
   }
 
   static updateProperty(req, res) {
@@ -54,7 +53,7 @@ class PropertyController {
         if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static markPropertySold(req, res) {
@@ -64,7 +63,7 @@ class PropertyController {
         if (result === false) return res.status(404).json({ status: 'error', error: 'id does not exist' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static deleteProperty(req, res) {
@@ -74,7 +73,7 @@ class PropertyController {
         if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
         return res.status(200).json({ status: 'success', data: { message: 'delete successful' } });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 }
 
