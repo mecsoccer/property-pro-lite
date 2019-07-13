@@ -132,20 +132,6 @@ describe('Tests for property Routes', () => {
           done();
         });
     });
-
-    it('#should return a 422 and error message for invalid image url', (done) => {
-      chai.request(app)
-        .post('/api/v1/properties')
-        .set('Authorization', loginToken)
-        .send(invalidImageUrl)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(422);
-          expect(res.body).to.have.property('error').that.is.a('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
   });
 
   describe('tests for get routes', () => {
