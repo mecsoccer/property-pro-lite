@@ -24,7 +24,7 @@ class UserController {
           },
         });
       })
-      .catch(/* istanbul ignore next */() => res.status(409).json({ status: 'error', error: 'user already exists' }));
+      .catch(() => res.status(409).json({ status: 'error', error: 'user already exists' }));
   }
 
   static signInUser(req, res) {
@@ -34,7 +34,7 @@ class UserController {
         if (result.error) return res.status(401).json({ status: 'error', error: 'wrong email or password' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(() => res.status(500).json({ error: 'something went wrong' }));
   }
 }
 

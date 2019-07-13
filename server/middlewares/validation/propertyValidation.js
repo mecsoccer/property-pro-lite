@@ -72,6 +72,14 @@ class PropertyValidation {
       next();
     }
   }
+
+  static validateId(req, res, next) {
+    const { id } = req.params;
+    if (Number.isNaN(Number(id))) {
+      return res.status(422).json({ status: 'error', error: 'invalid property id' });
+    }
+    return next();
+  }
 }
 
 export default PropertyValidation;
