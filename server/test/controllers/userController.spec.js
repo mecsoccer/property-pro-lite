@@ -12,11 +12,24 @@ const {
   wrongSignInEmail, wrongSignInPassword, correctSignin,
 } = userData;
 
+let loginToken;
+
 describe('Tests for User Routes', () => {
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(userData.correctSignin)
+      .end((err, res) => {
+        loginToken = res.body.data.JWT;
+        done();
+      });
+  });
+
   describe('tests for sign up route', () => {
     it('#should return 201 and created object if data is valid', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(newValidUser)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -37,6 +50,7 @@ describe('Tests for User Routes', () => {
     it('- should return 409 if email already exists -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(newValidUser)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -47,9 +61,37 @@ describe('Tests for User Routes', () => {
         });
     });
 
+    it('- should return 401 for incorrect token -', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', 'dfak3k24fjajfjaklhi98we')
+        .send(newValidUser)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.an('string');
+          expect(res.body).to.have.property('status').that.equals('error');
+          done();
+        });
+    });
+
+    it('- should return 401 if no token -', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send(newValidUser)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.an('string');
+          expect(res.body).to.have.property('status').that.equals('error');
+          done();
+        });
+    });
+
     it('- should return 422, error message and email as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidEmail)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -63,6 +105,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and firstname as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidFirstName)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -76,6 +119,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and last_name as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidLastName)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -89,6 +133,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and password as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidPassword)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -102,6 +147,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and phoneNumber as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidPhone)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -115,6 +161,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and address as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidAddress)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -128,6 +175,7 @@ describe('Tests for User Routes', () => {
     it('- should return 422, error message and is_admin as error field -', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('Authorization', loginToken)
         .send(userInvalidIsAdmin)
         .end((err, res) => {
           expect(err).to.equal(null);

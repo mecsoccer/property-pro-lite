@@ -13,7 +13,7 @@ function migrateUser(token, email, first_name, last_name, password,
     values: [token, email, first_name, last_name, hash, phoneNumber, address, is_admin],
   };
 
-  pool.query(query);
+  return pool.query(query);
 }
 
 function migrateProperty(
@@ -27,14 +27,18 @@ function migrateProperty(
   pool.query(query);
 }
 
-migrateUser('adakda-33302-dadldsd445', 'user1@email.com', 'joe', 'doe', 'doe-john',
-  '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-tydldsd445', 'user2@email.com', 'joe', 'doe', 'john_doe',
-  '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-dadldsd489', 'user3@email.com', 'joe', 'doe', 'doe',
-  '08094232222', 'esiri close, ayobo, lagos state', false);
-migrateUser('adakda-33302-dadldsd489', 'user4@email.com', 'joe', 'doe', 'j-doe',
-  '08094232222', 'esiri close, ayobo, lagos state', false);
+async function seedUsers() {
+  await migrateUser('adakda33302dadldsd445', 'user1@email.com', 'joe', 'doe', 'doe-john',
+    '08094232222', 'esiri close, ayobo, lagos state', false);
+  await migrateUser('adakda33302tydldsd445', 'user2@email.com', 'joe', 'doe', 'john_doe',
+    '08094232222', 'esiri close, ayobo, lagos state', false);
+  await migrateUser('adakda33302dadldsd489', 'user3@email.com', 'joe', 'doe', 'doe',
+    '08094232222', 'esiri close, ayobo, lagos state', false);
+  await migrateUser('adakda33302dadldsd489', 'user4@email.com', 'joe', 'doe', 'j-doe',
+    '08094232222', 'esiri close, ayobo, lagos state', false);
+}
+
+seedUsers();
 
 migrateProperty(1, 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street',
   'bq', new Date(), 'https://img.com/img/house.png');
@@ -42,5 +46,5 @@ migrateProperty(1, 'available', '1000000.00', 'abia', 'umuahia', 'ubakala street
   'bq', new Date(), 'https://img.com/img/house.png');
 migrateProperty(1, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');
-migrateProperty(4, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
+migrateProperty(1, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');

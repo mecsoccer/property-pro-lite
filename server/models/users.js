@@ -6,7 +6,7 @@ import pool from '../db/migration';
 
 dotenv.config();
 
-/* istanbul ignore next */const secret = process.env.SECRET_KEY;
+const secret = process.env.SECRET_KEY;
 
 class UserOperations {
   static createUser(userDetails) {
@@ -29,12 +29,12 @@ class UserOperations {
   static loginUser(email, password) {
     return pool.query('SELECT * FROM users WHERE email=$1;', [email])
       .then((user) => {
-        /* istanbul ignore if */if (!user.rows[0]) return { error: 'error' };
+        if (!user.rows[0]) return { error: 'error' };
 
         const foundUser = user.rows[0];
         const authenticated = bcrypt.compareSync(password, foundUser.password);
 
-        /* istanbul ignore if */if (authenticated) {
+        if (authenticated) {
           const {
             token, id, first_name, last_name, is_admin,
           } = foundUser;
