@@ -1,11 +1,16 @@
 /* eslint-disable camelcase */
 import PropertyOperations from '../models/properties';
+import cloudinaryUpload from './helpers/cloudinaryUpload';
 
 class PropertyController {
-  static createNewProperty(req, res) {
+  static async createNewProperty(req, res) {
     const {
-      owner, price, state, city, address, type, image_url,
+      owner, price, state, city, address, type,
     } = req.body;
+    let image_url = '';
+
+    if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
+    req.body.image_url = image_url;
 
     PropertyOperations.createProperty({
       owner, price, status: 'available', state, city, address, type, created_on: new Date(), image_url,
@@ -13,7 +18,7 @@ class PropertyController {
       .then((newProperty) => {
         res.status(201).json({ status: 'success', data: newProperty });
       })
-      .catch(() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getAllProperties(req, res) {
@@ -30,7 +35,7 @@ class PropertyController {
         if (!result[0]) return res.status(404).json({ status: 'error', error: 'property type specified not found' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getSingleProperty(req, res) {
@@ -41,19 +46,23 @@ class PropertyController {
         if (!result) return res.status(404).json({ status: 'error', error: 'property not found' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
-  static updateProperty(req, res) {
+  static async updateProperty(req, res) {
     const { id } = req.params;
     const { id: owner } = req.authData;
+    let image_url = '';
+
+    if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
+    req.body.image_url = image_url;
 
     return PropertyOperations.updateOne(id, owner, req.body)
       .then((result) => {
         if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static markPropertySold(req, res) {
@@ -65,7 +74,7 @@ class PropertyController {
         if (!result) return res.status(404).json({ status: 'error', error: 'id does not exist' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static deleteProperty(req, res) {
@@ -76,7 +85,7 @@ class PropertyController {
         if (!result) return res.status(404).json({ status: 'error', error: 'id not available' });
         return res.status(200).json({ status: 'success', data: { message: 'delete successful' } });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 }
 
