@@ -9,7 +9,7 @@ const { expect } = chai;
 
 const {
   newValidProperty, invalidOwner, invalidPrice, invalidState, invalidCity,
-  invalidAddress, invalidType, invalidImageUrl, validPropertyUpdate,
+  invalidAddress, invalidType, validPropertyUpdate,
 } = propertyData;
 
 let loginToken;
@@ -20,7 +20,7 @@ describe('Tests for property Routes', () => {
       .post('/api/v1/auth/signin')
       .send(userData.correctSignin)
       .end((err, res) => {
-        loginToken = res.body.data.JWT;
+        loginToken = res.body.data.token;
         done();
       });
   });
@@ -45,6 +45,33 @@ describe('Tests for property Routes', () => {
           expect(res.body.data).to.have.property('address').that.is.a('string');
           expect(res.body.data).to.have.property('created_on');
           expect(res.body.data).to.have.property('image_url').that.is.a('string');
+          done();
+        });
+    });
+
+    it('#should return error for invalid token', (done) => {
+      chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', 'loginToken')
+        .send(newValidProperty)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('status').that.equals('error');
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('#should return error for no authorization header', (done) => {
+      chai.request(app)
+        .post('/api/v1/property')
+        .send(newValidProperty)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('status').that.equals('error');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });
@@ -153,8 +180,8 @@ describe('Tests for property Routes', () => {
           expect(res.body.data[0]).to.have.property('created_on').that.is.a('string');
           expect(res.body.data[0]).to.have.property('image_url').that.is.a('string');
           expect(res.body.data[0]).to.not.have.property('password');
-          expect(res.body.data[0]).to.have.property('owneremail').that.is.a('string');
-          expect(res.body.data[0]).to.have.property('ownerphonenumber').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('owner_email').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('owner_phone_number').that.is.a('string');
           done();
         });
     });
@@ -178,8 +205,21 @@ describe('Tests for property Routes', () => {
           expect(res.body.data).to.have.property('created_on').that.is.a('string');
           expect(res.body.data).to.have.property('image_url').that.is.a('string');
           expect(res.body.data).to.not.have.property('password').that.is.a('string');
-          expect(res.body.data).to.have.property('owneremail').that.is.a('string');
-          expect(res.body.data).to.have.property('ownerphonenumber').that.is.a('string');
+          expect(res.body.data).to.have.property('owner_email').that.is.a('string');
+          expect(res.body.data).to.have.property('owner_phone_number').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return error for if specific property not found', (done) => {
+      chai.request(app)
+        .get('/api/v1/property/10')
+        .set('Authorization', loginToken)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(404);
+          expect(res.body).to.have.property('status').that.equals('error');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });
@@ -202,8 +242,8 @@ describe('Tests for property Routes', () => {
           expect(res.body.data[0]).to.have.property('created_on').that.is.a('string');
           expect(res.body.data[0]).to.have.property('image_url').that.is.a('string');
           expect(res.body.data[0]).to.not.have.property('password');
-          expect(res.body.data[0]).to.have.property('owneremail').that.is.a('string');
-          expect(res.body.data[0]).to.have.property('ownerphonenumber').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('owner_email').that.is.a('string');
+          expect(res.body.data[0]).to.have.property('owner_phone_number').that.is.a('string');
           done();
         });
     });

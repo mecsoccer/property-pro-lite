@@ -1,26 +1,33 @@
 /* eslint-disable camelcase */
-import uniqId from 'uniqid';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import userOperations from '../models/users';
 
+dotenv.config();
+
+const secret = process.env.SECRET_KEY;
 const { createUser, loginUser } = userOperations;
 
 class UserController {
   static signUpUser(req, res) {
     const {
-      email, first_name, last_name, password, phoneNumber, address, is_admin,
+      email, first_name, last_name, password, phone_number, address, is_admin,
     } = req.body;
     const newUser = {
-      token: uniqId(), email, first_name, last_name, password, phoneNumber, address, is_admin,
+      email, first_name, last_name, password, phone_number, address, is_admin,
     };
     createUser(newUser)
       .then((result) => {
         const {
-          token: tk, id, first_name: first, last_name: last, email: mail, is_admin: admin,
+          id, first_name: first, last_name: last, phone_number: phone, email: mail, is_admin: admin,
         } = result;
+
+        const token = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
+
         res.status(201).json({
           status: 'success',
           data: {
-            token: tk, id, first_name: first, last_name: last, email: mail, is_admin: admin,
+            token, id, email: mail, first_name: first, last_name: last, phone_number: phone, is_admin: admin,
           },
         });
       })
@@ -32,7 +39,15 @@ class UserController {
     loginUser(email, password)
       .then((result) => {
         if (result.error) return res.status(401).json({ status: 'error', error: 'wrong email or password' });
-        return res.status(200).json({ status: 'success', data: result });
+        const {
+          id, first_name, last_name, is_admin,
+        } = result;
+        const token = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
+        const data = {
+          token, id, email, first_name, last_name, is_admin,
+        };
+
+        return res.status(200).json({ status: 'success', data });
       })
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }

@@ -1,25 +1,19 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 import pool from '../db/migration';
-
-dotenv.config();
-
-const secret = process.env.SECRET_KEY;
 
 class UserOperations {
   static createUser(userDetails) {
     const {
-      token, email, first_name, last_name, password, phoneNumber, address, is_admin,
+      email, first_name, last_name, password, phone_number, address, is_admin,
     } = userDetails;
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
     const query = {
-      text: 'INSERT INTO users(token, email, first_name, last_name, password, phoneNumber, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
-      values: [token, email, first_name, last_name, hash, phoneNumber, address, is_admin],
+      text: 'INSERT INTO users(email, first_name, last_name, password, phone_number, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      values: [email, first_name, last_name, hash, phone_number, address, is_admin],
     };
 
     return pool.query(query)
@@ -34,16 +28,7 @@ class UserOperations {
         const foundUser = user.rows[0];
         const authenticated = bcrypt.compareSync(password, foundUser.password);
 
-        if (authenticated) {
-          const {
-            token, id, first_name, last_name, is_admin,
-          } = foundUser;
-          const JWT = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
-          return {
-            token, id, email, first_name, last_name, is_admin, JWT,
-          };
-        }
-
+        if (authenticated) return foundUser;
         return { error: 'error' };
       });
   }

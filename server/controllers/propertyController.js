@@ -9,7 +9,7 @@ class PropertyController {
     } = req.body;
     let image_url = '';
 
-    if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
+    /* istanbul ignore if */if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
     req.body.image_url = image_url;
 
     PropertyOperations.createProperty({
@@ -18,13 +18,13 @@ class PropertyController {
       .then((newProperty) => {
         res.status(201).json({ status: 'success', data: newProperty });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static getAllProperties(req, res) {
     PropertyOperations.getAll()
       .then(result => res.status(200).json({ status: 'success', data: result }))
-      .catch(() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }
 
   static getPropertiesByType(req, res) {
@@ -35,7 +35,7 @@ class PropertyController {
         if (!result[0]) return res.status(404).json({ status: 'error', error: 'property type specified not found' });
         return res.status(200).json({ status: 'success', data: result });
       })
-      .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
+      .catch(/* istanbul ignore next */() => res.status(500).json({ status: 'error', error: 'something went wrong' }));
   }
 
   static getSingleProperty(req, res) {
@@ -54,7 +54,7 @@ class PropertyController {
     const { id: owner } = req.authData;
     let image_url = '';
 
-    if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
+    /* istanbul ignore if */if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
     req.body.image_url = image_url;
 
     return PropertyOperations.updateOne(id, owner, req.body)

@@ -8,7 +8,7 @@ const { expect } = chai;
 
 const {
   newValidUser, userInvalidEmail, userInvalidFirstName, userInvalidLastName, userInvalidPassword,
-  userInvalidAddress, userInvalidPhone, userInvalidIsAdmin, invalidSignInPassword,
+  userInvalidAddress, userInvalidPhone, userInvalidIsAdmin,
   wrongSignInEmail, wrongSignInPassword, correctSignin,
 } = userData;
 
@@ -20,7 +20,7 @@ describe('Tests for User Routes', () => {
       .post('/api/v1/auth/signin')
       .send(userData.correctSignin)
       .end((err, res) => {
-        loginToken = res.body.data.JWT;
+        loginToken = res.body.data.token;
         done();
       });
   });
@@ -37,11 +37,12 @@ describe('Tests for User Routes', () => {
           expect(res.body).to.have.property('data').that.is.an('object');
           expect(res.body).to.have.property('status').that.equals('success');
           expect(res.body.data).to.not.have.property('password');
+          expect(res.body.data).to.have.property('token').that.is.a('string');
+          expect(res.body.data).to.have.property('id');
           expect(res.body.data).to.have.property('email').that.is.a('string');
           expect(res.body.data).to.have.property('first_name').that.is.a('string');
           expect(res.body.data).to.have.property('last_name').that.is.a('string');
-          expect(res.body.data).to.have.property('id');
-          expect(res.body.data).to.have.property('token').that.is.a('string');
+          expect(res.body.data).to.have.property('phone_number').that.is.a('string');
           expect(res.body.data).to.have.property('is_admin').that.is.a('boolean');
           done();
         });
@@ -55,33 +56,6 @@ describe('Tests for User Routes', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(409);
-          expect(res.body).to.have.property('error').that.is.an('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
-
-    it('- should return 401 for incorrect token -', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signup')
-        .set('Authorization', 'dfak3k24fjajfjaklhi98we')
-        .send(newValidUser)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(401);
-          expect(res.body).to.have.property('error').that.is.an('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
-
-    it('- should return 401 if no token -', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signup')
-        .send(newValidUser)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(401);
           expect(res.body).to.have.property('error').that.is.an('string');
           expect(res.body).to.have.property('status').that.equals('error');
           done();
@@ -201,7 +175,6 @@ describe('Tests for User Routes', () => {
           expect(res.body.data).to.have.property('first_name').that.is.a('string');
           expect(res.body.data).to.have.property('last_name').that.is.a('string');
           expect(res.body.data).to.have.property('email').that.is.a('string');
-          expect(res.body.data).to.have.property('JWT').that.is.a('string');
           done();
         });
     });
@@ -226,32 +199,6 @@ describe('Tests for User Routes', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(401);
-          expect(res.body).to.have.property('error').that.is.a('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
-
-    it('# should return 422 and error message for invalid email -', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signin')
-        .send(userInvalidEmail)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(422);
-          expect(res.body).to.have.property('error').that.is.a('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
-
-    it('# should return 422 and error message for invalid password', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signin')
-        .send(invalidSignInPassword)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(422);
           expect(res.body).to.have.property('error').that.is.a('string');
           expect(res.body).to.have.property('status').that.equals('error');
           done();
