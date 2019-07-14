@@ -18,7 +18,7 @@ const {
 
 const router = express.Router();
 
-router.post('/auth/signup', validateUser, signUpUser);
+router.post('/auth/signup', /* validateUser, */ signUpUser);
 router.post('/auth/signin', signInUser);
 
 router.post('/property', authVerify, multerMiddleware, validateProperty, createNewProperty);

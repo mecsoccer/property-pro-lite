@@ -13,7 +13,7 @@ class PropertyController {
     req.body.image_url = image_url;
 
     PropertyOperations.createProperty({
-      owner, price, status: 'available', state, city, address, type, created_on: new Date(), image_url,
+      owner, price: Number(price).toFixed(2), status: 'available', state, city, address, type, created_on: new Date(), image_url,
     })
       .then((newProperty) => {
         res.status(201).json({ status: 'success', data: newProperty });
