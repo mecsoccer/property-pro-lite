@@ -28,7 +28,7 @@ describe('Tests for property Routes', () => {
   describe('tests for post route', () => {
     it('#should return 201 and created object if data is valid', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(newValidProperty)
         .end((err, res) => {
@@ -51,7 +51,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid owner', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidOwner)
         .end((err, res) => {
@@ -65,7 +65,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid price', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidPrice)
         .end((err, res) => {
@@ -79,7 +79,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid state', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidState)
         .end((err, res) => {
@@ -93,7 +93,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid city', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidCity)
         .end((err, res) => {
@@ -107,7 +107,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid address', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidAddress)
         .end((err, res) => {
@@ -121,7 +121,7 @@ describe('Tests for property Routes', () => {
 
     it('#should return a 422 and error message for invalid property type', (done) => {
       chai.request(app)
-        .post('/api/v1/properties')
+        .post('/api/v1/property')
         .set('Authorization', loginToken)
         .send(invalidType)
         .end((err, res) => {
@@ -137,7 +137,7 @@ describe('Tests for property Routes', () => {
   describe('tests for get routes', () => {
     it('should return all properties', (done) => {
       chai.request(app)
-        .get('/api/v1/properties')
+        .get('/api/v1/property')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -161,7 +161,7 @@ describe('Tests for property Routes', () => {
 
     it('should return a specific property', (done) => {
       chai.request(app)
-        .get('/api/v1/properties/1')
+        .get('/api/v1/property/1')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -186,7 +186,7 @@ describe('Tests for property Routes', () => {
 
     it('should return all properties of a specific type', (done) => {
       chai.request(app)
-        .get('/api/v1/properties/type?type=3 bedroom')
+        .get('/api/v1/property/type?type=3 bedroom')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -210,7 +210,7 @@ describe('Tests for property Routes', () => {
 
     it('should return error for a non-existent property type', (done) => {
       chai.request(app)
-        .get('/api/v1/properties/type?type=none')
+        .get('/api/v1/property/type?type=none')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -225,7 +225,7 @@ describe('Tests for property Routes', () => {
   describe('PATCH routes', () => {
     it('should update property advert', (done) => { //
       chai.request(app)
-        .patch('/api/v1/properties/1')
+        .patch('/api/v1/property/1')
         .set('Authorization', loginToken)
         .send(validPropertyUpdate)
         .end((err, res) => {
@@ -248,7 +248,7 @@ describe('Tests for property Routes', () => {
 
     it('should return 404 if property id does not exist', (done) => {
       chai.request(app)
-        .patch('/api/v1/properties/1000000')
+        .patch('/api/v1/property/1000000')
         .set('Authorization', loginToken)
         .send(validPropertyUpdate)
         .end((err, res) => {
@@ -262,7 +262,7 @@ describe('Tests for property Routes', () => {
 
     it('should mark property as sold', (done) => { //
       chai.request(app)
-        .patch('/api/v1/properties/1/sold')
+        .patch('/api/v1/property/1/sold')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -283,7 +283,7 @@ describe('Tests for property Routes', () => {
 
     it('(for mark as sold) should return error for non-existent property', (done) => {
       chai.request(app)
-        .patch('/api/v1/properties/10/sold')
+        .patch('/api/v1/property/10/sold')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -296,7 +296,7 @@ describe('Tests for property Routes', () => {
 
     it('(for mark as sold) should return error for invalid property id', (done) => {
       chai.request(app)
-        .patch('/api/v1/properties/ten/sold')
+        .patch('/api/v1/property/ten/sold')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -311,7 +311,7 @@ describe('Tests for property Routes', () => {
   describe('tests for delete route', () => {
     it('should delete property', (done) => {
       chai.request(app)
-        .delete('/api/v1/properties/4')
+        .delete('/api/v1/property/4')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -325,7 +325,7 @@ describe('Tests for property Routes', () => {
 
     it('should return 404 for non-existing id delete property', (done) => {
       chai.request(app)
-        .delete('/api/v1/properties/0')
+        .delete('/api/v1/property/0')
         .set('Authorization', loginToken)
         .end((err, res) => {
           expect(err).to.equal(null);

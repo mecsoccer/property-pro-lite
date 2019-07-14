@@ -21,12 +21,12 @@ const router = express.Router();
 router.post('/auth/signup', validateUser, authVerify, signUpUser);
 router.post('/auth/signin', validateSignin, signInUser);
 
-router.post('/properties', authVerify, multerMiddleware, validateProperty, createNewProperty);
-router.get('/properties', authVerify, getAllProperties);
-router.get('/properties/type', authVerify, getPropertiesByType);
-router.get('/properties/:id', authVerify, validateId, getSingleProperty);
-router.patch('/properties/:id/sold', authVerify, validateId, validatePropertyUpdate, markPropertySold);
-router.patch('/properties/:id', authVerify, validateId, multerMiddleware, validatePropertyUpdate, updateProperty);
-router.delete('/properties/:id', authVerify, validateId, deleteProperty);
+router.post('/property', authVerify, multerMiddleware, validateProperty, createNewProperty);
+router.get('/property', authVerify, getAllProperties);
+router.get('/property/type', authVerify, getPropertiesByType);
+router.get('/property/:id', authVerify, validateId, getSingleProperty);
+router.patch('/property/:id/sold', authVerify, validateId, validatePropertyUpdate, markPropertySold);
+router.patch('/property/:id', authVerify, validateId, multerMiddleware, validatePropertyUpdate, updateProperty);
+router.delete('/property/:id', authVerify, validateId, deleteProperty);
 
 export default router;
