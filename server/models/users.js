@@ -1,56 +1,51 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcryptjs';
-import UserStore from '../db/userStore';
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import pool from '../db/migration';
+
+dotenv.config();
+
+const secret = process.env.SECRET_KEY;
 
 class UserOperations {
-  static createUser(userDetail) {
-    return new Promise((resolve) => {
-      const {
-        token, email, first_name, last_name, password, phoneNumber, address, is_admin,
-      } = userDetail;
-      const id = `${UserStore.length + 1}`;
-      const hash = bcrypt.hashSync(password, 10);
-      const newUser = {
-        token, id, email, first_name, last_name, password: hash, phoneNumber, address, is_admin,
-      };
-      let error;
+  static createUser(userDetails) {
+    const {
+      token, email, first_name, last_name, password, phoneNumber, address, is_admin,
+    } = userDetails;
 
-      UserStore.forEach((user) => {
-        if (user.email === email) {
-          error = 'user already exists';
-          resolve({ statusCode: 409, error, status: 'error' });
-        }
-      });
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
 
-      if (error) return;
-      UserStore.push(newUser);
-      const data = { token, id, first_name, last_name, email, is_admin };
-      resolve({ statusCode: 201, data, status: 'success' });
-    });
+    const query = {
+      text: 'INSERT INTO users(token, email, first_name, last_name, password, phoneNumber, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+      values: [token, email, first_name, last_name, hash, phoneNumber, address, is_admin],
+    };
+
+    return pool.query(query)
+      .then(user => user.rows[0]);
   }
 
   static loginUser(email, password) {
-    return new Promise((resolve) => {
-      const user = UserStore.filter(item => item.email === email)[0];
+    return pool.query('SELECT * FROM users WHERE email=$1;', [email])
+      .then((user) => {
+        if (!user.rows[0]) return { error: 'error' };
 
-      if (!user || !bcrypt.compareSync(password, user.password)) {
-        resolve({ statusCode: 401, error: 'incorrect email or password', status: 'error' });
-      }
+        const foundUser = user.rows[0];
+        const authenticated = bcrypt.compareSync(password, foundUser.password);
 
-      resolve({ statusCode: 200, data: user, status: 'success' });
-    });
-  }
-
-  static getUserById(id) {
-    return new Promise((resolve) => {
-      UserStore.forEach((user) => {
-        if (user.id === id) {
-          resolve({ statusCode: 200, data: user, status: 'success' });
+        if (authenticated) {
+          const {
+            token, id, first_name, last_name, is_admin,
+          } = foundUser;
+          const JWT = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
+          return {
+            token, id, email, first_name, last_name, is_admin, JWT,
+          };
         }
-      });
 
-      resolve({ statusCode: 404, error: 'user does not exist', status: 'error' });
-    });
+        return { error: 'error' };
+      });
   }
 }
 

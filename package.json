@@ -6,9 +6,24 @@
   "scripts": {
     "start": "node ./build/index.js",
     "devstart": "nodemon --exec babel-node ./server/index.js",
-    "test": "nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
+    "unmigrate": "babel-node ./server/db/unmigrate.js",
+    "migrate": "babel-node ./server/db/migration.js",
+    "seed": "babel-node ./server/db/seed.js",
+    "migration": "npm run unmigrate && npm run migrate && npm run seed",
+    "test": "npm run migration && nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"
+  },
+  "nyc": {
+    "exclude": [
+      "server/index.js",
+      "build",
+      "server/controllers/helpers",
+      "server/middlewares/validation",
+      "server/db/database.js",
+      "UI"
+    ]
   },
   "repository": {
     "type": "git",
@@ -36,12 +51,18 @@
     "bcryptjs": "^2.4.3",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cloudinary": "^1.14.0",
     "cors": "^2.8.5",
+    "coveralls": "^3.0.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mocha": "^6.1.4",
     "morgan": "^1.9.1",
+    "multer": "^1.4.1",
     "nyc": "^14.1.1",
+    "pg": "^7.11.0",
+    "uniqid": "^5.0.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

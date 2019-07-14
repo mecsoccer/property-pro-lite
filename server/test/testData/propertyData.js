@@ -72,12 +72,13 @@ const Properties = {
     image_url: [],
   },
   validPropertyUpdate: {
+    owner: '1',
     price: '307000.00',
     state: 'abia',
     city: 'umuahia',
     address: 'anywhere you go',
     type: '3 bedroom',
-    image_url: '',
+    image_url: 'https://updateimg.com/img/imageupdate.png',
   },
 };
 
