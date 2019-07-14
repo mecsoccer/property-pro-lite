@@ -21,6 +21,7 @@
       "build",
       "server/controllers/helpers",
       "server/middlewares/validation",
+      "server/middlewares/multerMiddleware.js",
       "server/db/database.js",
       "UI"
     ]

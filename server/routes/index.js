@@ -7,7 +7,7 @@ import PropertyValidation from '../middlewares/validation/propertyValidation';
 import multerMiddleware from '../middlewares/multerMiddleware';
 
 const { authVerify } = Verify;
-const { validateUser, validateSignin } = UserValidation;
+const { validateUser } = UserValidation;
 const { validateProperty, validatePropertyUpdate, validateId } = PropertyValidation;
 const { signUpUser, signInUser } = UserController;
 const {
@@ -18,8 +18,8 @@ const {
 
 const router = express.Router();
 
-router.post('/auth/signup', validateUser, authVerify, signUpUser);
-router.post('/auth/signin', validateSignin, signInUser);
+router.post('/auth/signup', validateUser, signUpUser);
+router.post('/auth/signin', signInUser);
 
 router.post('/property', authVerify, multerMiddleware, validateProperty, createNewProperty);
 router.get('/property', authVerify, getAllProperties);

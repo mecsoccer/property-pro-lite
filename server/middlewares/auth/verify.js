@@ -13,7 +13,7 @@ class Verify {
       jwt.verify(authorization, secret, (err, authData) => {
         if (err) return res.status(401).json({ status: 'error', error: 'expired or invalid token, signin again' });
         req.authData = authData;
-        next();
+        return next();
       });
     } else {
       res.status(401).json({ status: 'error', error: 'you have to sign in' });
