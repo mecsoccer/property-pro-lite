@@ -1,0 +1,561 @@
+{
+	"swagger": "2.0",
+	"info": {
+	  "version": "1.0",
+	  "title": "PropertyPro-lite",
+	  "description": "Property Pro Lite is a platform where people can create and/or search properties for sale or rent."
+	},
+	"schemes": [
+	  "https"
+	],
+	"host": "https://serene-acadia-52622.herokuapp.com",
+	"basePath": "/api/v1",
+	"securityDefinitions": {
+	  "Bearer": {
+		"type": "apiKey",
+		"name": "Authorization",
+		"in": "header"
+	  }
+	},
+	"tags": [
+	  {
+		"name": "User",
+		"description": "API for users in the system"
+	  },
+	  {
+		"name": "Property",
+		"description": "API for properties in the system"
+	  }
+	],
+	"paths": {
+	  "/auth/signup": {
+		"post": {
+		  "description": "User fills in his/her details, information is stored and token returned",
+		  "summary": "Handles the creation of a new user account",
+		  "tags": [
+			"User"
+		  ],
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "in": "body",
+			  "name": "body",
+			  "required": true,
+			  "description": "This is the request body object containing users' create information",
+			  "schema": {
+				"$ref": "#/definitions/UserSignUprequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"201": {
+			  "description": "User has been successfully registered"
+			},
+			"400": {
+			  "description": "Please fill in the fields"
+			},
+			"409": {
+			  "description": "email is taken"
+			},
+			"500": {
+			  "description": "Internal server error"
+			}
+		  }
+		}
+	  },
+	  "/auth/signin": {
+		"post": {
+		  "description": "This endpoint signs a user into the application",
+		  "summary": "Sign in a user",
+		  "tags": [
+			"User"
+		  ],
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "in": "body",
+			  "name": "body",
+			  "required": true,
+			  "description": "This is the request body object containing users' login information",
+			  "schema": {
+				"$ref": "#/definitions/UserSignInrequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success"
+			},
+			"401": {
+			  "description": "Invalid credentials"
+			},
+			"500": {
+			  "description": "Internal server error"
+			}
+		  }
+		}
+	  },
+	  "/property": {
+		"get": {
+		  "description": "Fetches property adverts from the database",
+		  "summary": "Gets property profile",
+		  "tags": [
+			"Property"
+		  ],
+		  "produces": [
+			"application/json,"
+		  ],
+		  "security": [
+			{
+			  "Bearer": []
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success"
+			},
+			"401": {
+			  "description": "Kindly sign in"
+			},
+			"500": {
+			  "description": "Internal server error"
+			}
+		  }
+		},
+		"post": {
+			"description": "User/agent can post a property advert to the databse",
+			"summary": "Handles the posting of a property advert",
+			"tags": [
+			  "Property"
+            ],
+            "consumes": [
+              "multipart/form-data"
+            ],
+			"produces": [
+			  "application/json"
+			],
+			"security": [
+			  {
+				"Bearer": []
+			  }
+			],
+			"parameters": [
+			  {
+				"in": "body",
+				"name": "body",
+				"required": true,
+				"description": "This is the request body object containing property advert info",
+				"schema": {
+				  "$ref": "#/definitions/CreatePropertyrequest"
+				}
+              },
+              {
+				"in": "formData",
+                "name": "image_url",
+                "type": "file",
+				"required": false,
+				"description": "this is the image view of the property advert",
+				"schema": {
+				  "$ref": "#/definitions/CreatePropertyrequest"
+				}
+			  }
+			],
+			"responses": {
+			  "200": {
+				"description": "Successfully created property advert"
+			  },
+			  "401": {
+				"description": "Kindly sign in"
+              },
+              "422": {
+				"description": "missing or invalid parameter"
+			  },
+			  "500": {
+				"description": "Internal server error"
+			  }
+			}
+		  }
+      },
+      "/property/type": {
+        "get": {
+            "description": "user can get all properties of a specific type",
+            "summary": "Handles retrieving properties by type",
+            "tags": [
+              "Property"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "security": [
+              {
+                "Bearer": []
+              }
+            ],
+            "parameters": [
+              {
+                "in": "query",
+                "name": "type",
+                "required": true,
+                "description": "This is the property type to be retrieved"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success"
+              },
+              "401": {
+                  "description": "Kindly sign in"
+              },
+              "404": {
+                "description": "Property does not exist"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+        }
+      },
+	  "/property/{propertyId}": {
+		"get": {
+		  "description": "user can get a single property from the database",
+		  "summary": "Handles retrieving of a single property",
+		  "tags": [
+			"Property"
+		  ],
+		  "produces": [
+			"application/json"
+		  ],
+		  "security": [
+			{
+			  "Bearer": []
+			}
+		  ],
+		  "parameters": [
+			{
+			  "in": "path",
+			  "name": "propertyId",
+			  "required": true,
+			  "description": "This is the request param ID passed in the url"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success"
+            },
+            "401": {
+                "description": "Kindly sign in"
+            },
+			"404": {
+			  "description": "Property does not exist"
+			},
+			"500": {
+			  "description": "Internal server error"
+			}
+		  }
+		},
+		"patch": {
+			"description": "Agent can update a single property owned by the agent",
+			"summary": "Handles the updating of a property advert",
+			"tags": [
+			  "Property"
+            ],
+            "consumes": [
+              "multipart/form-data"
+            ],
+			"produces": [
+			  "application/json"
+			],
+			"security": [
+			  {
+				"Bearer": []
+			  }
+			],
+			"parameters": [
+			  {
+				"in": "path",
+				"name": "propertyId",
+				"required": true,
+				"description": "This is the request param ID passed in the request url"
+			  },
+			  {
+				"in": "formData",
+				"name": "body",
+				"required": true,
+				"description": "This is the request body object containing property update information",
+				"schema": {
+				  "$ref": "#/definitions/UpdatePropertyrequest"
+				}
+              },
+              {
+				"in": "formData",
+                "name": "image_url",
+                "type": "file",
+				"required": false,
+				"description": "this is the image view of the property advert",
+				"schema": {
+				  "$ref": "#/definitions/UpdatePropertyrequest"
+				}
+			  }
+			],
+			"responses": {
+			  "200": {
+				"description": "Successfully updates property"
+              },
+              "401": {
+				"description": "Kindly sign in"
+			  },
+              "422": {
+				"description": "missing or invalid parameter"
+			  },
+			  "404": {
+				"description": "property does not exist"
+			  },
+			  "500": {
+				"description": "Internal server error"
+			  }
+			}
+        },
+        "delete": {
+			"description": "Agent can delete own property",
+			"summary": "Handles the delete of a property advert",
+			"tags": [
+			  "Property"
+			],
+			"produces": [
+			  "application/json"
+			],
+			"security": [
+			  {
+				"Bearer": []
+			  }
+			],
+			"parameters": [
+			  {
+				"in": "path",
+				"name": "propertyId",
+				"required": true,
+				"description": "This is the request param ID passed in the request url"
+			  }
+			],
+			"responses": {
+			  "200": {
+				"description": "Successfully deleted product"
+              },
+              "401": {
+				"description": "Kindly sign in"
+			  },
+			  "404": {
+				"description": "product does not exist"
+			  },
+			  "500": {
+				"description": "Internal server error"
+			  }
+			}
+		}
+	  },
+	  "/property/{propertyId}/sold": {
+		"patch": {
+			"description": "User(agent) can mark the status of a property as sold",
+			"summary": "Handles marking property as sold",
+			"tags": [
+			  "Product"
+			],
+			"produces": [
+			  "application/json"
+			],
+			"security": [
+			  {
+				"Bearer": []
+			  }
+			],
+			"parameters": [
+			  {
+				"in": "path",
+				"name": "propertyId",
+				"required": true,
+				"description": "This is the id of the property in the database"
+			  }
+			],
+			"responses": {
+			  "200": {
+				"description": "Successfully updated property advert"
+			  },
+			  "404": {
+				"description": "property does not exist"
+			  },
+			  "401": {
+				"description": "Kindly sign in"
+			  },
+			  "500": {
+				"description": "Internal server error"
+			  }
+			}
+		}
+	  }
+    },
+	"definitions": {
+	  "UserSignUprequest": {
+		"title": "User create Request",
+		"type": "object",
+		"properties": {
+          "email": {
+            "description": "email of the user",
+            "type": "string"
+          },
+		  "first_name": {
+			"description": "first name of the user",
+			"type": "string"
+		  },
+		  "last_name": {
+			"description": "The last name of the user",
+			"type": "string"
+		  },
+		  "password": {
+			"description": "The Password of the user",
+			"type": "string"
+          },
+          "phone_number": {
+			"description": "The phone number of the user",
+			"type": "string"
+          },
+          "address": {
+			"description": "The address of the user",
+			"type": "string"
+          },
+          "is_admin": {
+			"description": "Designates user as admin or not",
+			"type": "boolean"
+          }
+		},
+		"example": {
+          "email": "example@example.com",
+		  "first_name": "john",
+		  "last_name": "doe",
+		  "password": "user1234#$",
+          "phone_number": "08034123789",
+          "address": "no. 39 onike yaba, lagos state",
+          "is_admin": "true"
+		},
+		"required": [
+		  "username, email, name, password, role"
+		]
+	  },
+	  "UserSignInrequest": {
+		"title": "User SignIn Request",
+		"type": "object",
+		"properties": {
+		  "email": {
+			"description": "The email address of the user",
+			"type": "string"
+		  },
+		  "password": {
+			"description": "The Password of the user",
+			"type": "string"
+		  }
+		},
+		"example": {
+		  "email": "myname@myemail.com",
+		  "password": "adMin123&#"
+		},
+		"required": [
+		  "email, password"
+		]
+	  },
+	  "CreatePropertyrequest": {
+        "title": "Property create Request",
+        "type": "object",
+        "properties": {
+            "owner": {
+              "description": "owner id",
+              "type": "integer"
+            },
+            "price": {
+              "description": "Property price",
+              "type": "float"
+            },
+            "state": {
+                "description": "State in which Property is located",
+                "type": "string"
+            },
+            "city": {
+                "description": "City in which Property is located",
+                "type": "string"
+            },
+            "address": {
+                "description": "Address of property",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of property",
+                "type": "string"
+            },
+            "image_url": {
+              "description": "Image Url",
+              "type": "file"
+            }
+        },
+        "example": {
+            "owner": "Name",
+            "pricd": "description must be minimum of five words",
+            "state": "Users",
+            "city": 1000,
+            "address": 100,
+            "type": 10,
+            "image_url": "image upload"
+        },
+        "required": [
+            "owner, price, state, city, address, type, image_url"
+        ]
+      },
+      "UpdatePropertyrequest": {
+        "title": "Property update Request",
+        "type": "object",
+        "properties": {
+            "owner": {
+              "description": "owner id",
+              "type": "integer"
+            },
+            "price": {
+              "description": "Property price",
+              "type": "float"
+            },
+            "state": {
+                "description": "State in which Property is located",
+                "type": "string"
+            },
+            "city": {
+                "description": "City in which Property is located",
+                "type": "string"
+            },
+            "address": {
+                "description": "Address of property",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of property",
+                "type": "string"
+            },
+            "image_url": {
+              "description": "Image Url",
+              "type": "file"
+            }
+        },
+        "example": {
+            "owner": "Name",
+            "pricd": "description must be minimum of five words",
+            "state": "Users",
+            "city": 1000,
+            "address": 100,
+            "type": 10,
+            "image_url": "image upload"
+        },
+        "required": [
+            "owner, price, state, city, address, type, image_url"
+        ]
+      }
+    }
+}
