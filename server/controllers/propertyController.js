@@ -5,8 +5,10 @@ import cloudinaryUpload from './helpers/cloudinaryUpload';
 class PropertyController {
   static async createNewProperty(req, res) {
     const {
-      owner, price, state, city, address, type,
+      price, state, city, address, type,
     } = req.body;
+    const owner = req.authData.id;
+
     let image_url = '';
 
     /* istanbul ignore if */if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);

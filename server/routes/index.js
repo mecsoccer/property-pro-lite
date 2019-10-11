@@ -22,9 +22,9 @@ router.post('/auth/signup', validateUser, signUpUser);
 router.post('/auth/signin', signInUser);
 
 router.post('/property', authVerify, multerMiddleware, validateProperty, createNewProperty);
-router.get('/property', authVerify, getAllProperties);
+router.get('/property', getAllProperties);
 router.get('/property/type', authVerify, getPropertiesByType);
-router.get('/property/:id', authVerify, validateId, getSingleProperty);
+router.get('/property/:id', validateId, getSingleProperty);
 router.patch('/property/:id/sold', authVerify, validateId, validatePropertyUpdate, markPropertySold);
 router.patch('/property/:id', authVerify, validateId, multerMiddleware, validatePropertyUpdate, updateProperty);
 router.delete('/property/:id', authVerify, validateId, deleteProperty);
