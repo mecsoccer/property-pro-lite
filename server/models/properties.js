@@ -32,7 +32,7 @@ class PropertyOperations {
   }
 
   static getPropertyById(id) {
-    const text = `SELECT properties.id,properties.status,properties.type,properties.state,properties.city,
+    const text = `SELECT properties.id,properties.status,properties.owner,properties.type,properties.state,properties.city,
     properties.address,properties.price,properties.created_on,properties.image_url,users.email As owner_email, users.phone_number As owner_phone_number
       FROM properties INNER JOIN users ON properties.owner=users.id WHERE properties.id=$1;`;
     return pool.query(text, [id])

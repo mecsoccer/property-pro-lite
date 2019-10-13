@@ -11,8 +11,13 @@ class PropertyController {
 
     let image_url = '';
 
-    /* istanbul ignore if */if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
-    req.body.image_url = image_url;
+    /* istanbul ignore if */if (req.file) {
+      try {
+        image_url = await cloudinaryUpload.uploadImage(req.file.path);
+      } catch (error) {
+        console.log('image not uploaded');
+      }
+    }
 
     PropertyOperations.createProperty({
       owner, price, status: 'available', state, city, address, type, created_on: new Date(), image_url,
@@ -56,10 +61,16 @@ class PropertyController {
     const { id: owner } = req.authData;
     let image_url = '';
 
-    /* istanbul ignore if */if (req.file) image_url = await cloudinaryUpload.uploadImage(req.file.path);
-    req.body.image_url = image_url;
+    /* istanbul ignore if */if (req.file) {
+      try {
+        const imageUpload = await cloudinaryUpload.uploadImage(req.file.path);
+        image_url = imageUpload;
+      } catch (error) {
+        console.log('image not uploaded');
+      }
+    }
 
-    return PropertyOperations.updateOne(id, owner, req.body)
+    return PropertyOperations.updateOne(id, owner, { ...req.body, image_url })
       .then((result) => {
         if (!result) return res.status(404).json({ status: 'error', error: 'id and owner do not match any record' });
         return res.status(200).json({ status: 'success', data: result });
