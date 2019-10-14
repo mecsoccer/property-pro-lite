@@ -10,24 +10,18 @@ const { createUser, loginUser } = userOperations;
 
 class UserController {
   static signUpUser(req, res) {
-    const {
-      email, first_name, last_name, password, phone_number, address, is_admin,
-    } = req.body;
-    const newUser = {
-      email, first_name, last_name, password, phone_number, address, is_admin,
-    };
-    createUser(newUser)
+    createUser(req.body)
       .then((result) => {
         const {
-          id, first_name: first, last_name: last, phone_number: phone, email: mail, is_admin: admin,
+          id, first_name, last_name, phone_number, email, role,
         } = result;
 
-        const token = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
+        const token = jwt.sign({ id, email, first_name, last_name, role }, secret, { expiresIn: '1hr' });
 
         res.status(201).json({
           status: 'success',
           data: {
-            token, id, email: mail, first_name: first, last_name: last, phone_number: phone, is_admin: admin,
+            token, id, email, first_name, last_name, phone_number, role,
           },
         });
       })
@@ -40,11 +34,11 @@ class UserController {
       .then((result) => {
         if (result.error) return res.status(401).json({ status: 'error', error: 'wrong email or password' });
         const {
-          id, first_name, last_name, is_admin,
+          id, first_name, last_name, role,
         } = result;
-        const token = jwt.sign({ id, email, first_name, last_name, is_admin }, secret, { expiresIn: '1hr' });
+        const token = jwt.sign({ id, email, first_name, last_name, role }, secret, { expiresIn: '1hr' });
         const data = {
-          token, id, email, first_name, last_name, is_admin,
+          token, id, email, first_name, last_name, role,
         };
 
         return res.status(200).json({ status: 'success', data });

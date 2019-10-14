@@ -6,11 +6,11 @@ import pool from './database';
 dotenv.config();
 
 function migrateUser(email, first_name, last_name, password,
-  phone_number, address, is_admin) {
+  phone_number, address, role) {
   const hash = bcrypt.hashSync(password, 10);
   const query = {
-    text: 'INSERT INTO users(email, first_name, last_name, password, phone_number, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7);',
-    values: [email, first_name, last_name, hash, phone_number, address, is_admin],
+    text: 'INSERT INTO users(email, first_name, last_name, password, phone_number, address, role) VALUES($1, $2, $3, $4, $5, $6, $7);',
+    values: [email, first_name, last_name, hash, phone_number, address, role],
   };
 
   return pool.query(query);
@@ -28,10 +28,10 @@ function migrateProperty(
 }
 
 async function seedUsers() {
-  await migrateUser('user1@email.com', 'joe', 'doe', 'doe-john', '08094232222', 'esiri close, ayobo, lagos state', false);
-  await migrateUser('user2@email.com', 'joe', 'doe', 'john_doe', '08094232222', 'esiri close, ayobo, lagos state', false);
-  await migrateUser('user3@email.com', 'joe', 'doe', 'doe', '08094232222', 'esiri close, ayobo, lagos state', false);
-  await migrateUser('user4@email.com', 'joe', 'doe', 'j-doe', '08094232222', 'esiri close, ayobo, lagos state', false);
+  await migrateUser('user1@email.com', 'joe', 'doe', 'doe-john', '08094232222', 'esiri close, ayobo, lagos state', 'agent');
+  await migrateUser('user2@email.com', 'joe', 'doe', 'john_doe', '08094232222', 'esiri close, ayobo, lagos state', 'client');
+  await migrateUser('user3@email.com', 'joe', 'doe', 'doe', '08094232222', 'esiri close, ayobo, lagos state', 'client');
+  await migrateUser('user4@email.com', 'joe', 'doe', 'j-doe', '08094232222', 'esiri close, ayobo, lagos state', 'client');
 }
 
 seedUsers();

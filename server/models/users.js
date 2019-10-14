@@ -5,15 +5,15 @@ import pool from '../db/migration';
 class UserOperations {
   static createUser(userDetails) {
     const {
-      email, first_name, last_name, password, phone_number, address, is_admin,
+      email, first_name, last_name, password, phone_number, address, role,
     } = userDetails;
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
     const query = {
-      text: 'INSERT INTO users(email, first_name, last_name, password, phone_number, address, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      values: [email, first_name, last_name, hash, phone_number, address, is_admin],
+      text: 'INSERT INTO users(email, first_name, last_name, password, phone_number, address, role) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      values: [email, first_name, last_name, hash, phone_number, address, role],
     };
 
     return pool.query(query)
