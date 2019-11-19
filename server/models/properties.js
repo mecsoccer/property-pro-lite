@@ -15,11 +15,16 @@ class PropertyOperations {
       .then(data => data.rows[0]);
   }
 
-  static getAll() {
+  static getAll(limit, offset, state, type) {
+    const stateParam = state === '' ? '%' : state;
+    const typeParam = type === '' ? '%' : type;
+
     const text = `SELECT properties.id,properties.status,properties.owner,properties.type,properties.state,properties.city,
     properties.address,properties.price,properties.created_on,properties.image_url,users.email As owner_email, users.phone_number As owner_phone_number
-      FROM properties INNER JOIN users ON properties.owner=users.id;`;
-    return pool.query(text)
+      FROM properties INNER JOIN users ON properties.owner=users.id WHERE state LIKE $1 and type LIKE $2 LIMIT $3 OFFSET $4;`;
+    const values = [stateParam, typeParam, limit, offset];
+
+    return pool.query(text, values)
       .then(data => data.rows);
   }
 

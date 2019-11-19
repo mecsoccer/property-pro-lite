@@ -29,7 +29,14 @@ class PropertyController {
   }
 
   static getAllProperties(req, res) {
-    PropertyOperations.getAll()
+    const { query } = req;
+
+    const limit = query.limit ? query.limit : 10;
+    const offset = query.offset ? query.offset : 0;
+    const stateFilter = query.state;
+    const typeFilter = query.type;
+
+    PropertyOperations.getAll(limit, offset, stateFilter, typeFilter)
       .then(result => res.status(200).json({ status: 'success', data: result }))
       .catch(/* istanbul ignore next */() => res.status(500).json({ error: 'something went wrong' }));
   }

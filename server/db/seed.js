@@ -44,3 +44,38 @@ migrateProperty(1, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');
 migrateProperty(1, 'sold', '1000000.00', 'enugu', 'enugu', 'new heaven',
   '3 bedroom', new Date(), 'https://img.com/img/house.png');
+
+/*
+migrateProperty(1, 'sold', '100000.00', 'imo', 'owerri', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'imo', 'owerri', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'bariga', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'bariga', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'yaba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'yaba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'yaba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'shomolu', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'ayobo', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'egbeda', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'abia', 'umuahia', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'abia', 'aba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'imo', 'owerri', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'lekki', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'yaba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+migrateProperty(1, 'sold', '1000000.00', 'lagos', 'yaba', 'new heaven',
+  '3 bedroom', new Date(), 'https://img.com/img/house.png');
+*/
