@@ -7,7 +7,7 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '08094232222',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
+    role: 'agent',
   },
   userInvalidEmail: {
     id: 2,
@@ -17,7 +17,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '08094232222',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
   },
   userInvalidFirstName: {
     id: 3,
@@ -27,7 +26,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '08094232222',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
   },
   userInvalidLastName: {
     id: 4,
@@ -37,7 +35,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '08094232222',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
   },
   userInvalidPassword: {
     id: 4,
@@ -47,7 +44,6 @@ const Users = {
     password: '$jhh$Gy&gyYY#$YGIIY',
     phone_number: '08094232222',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
   },
   userInvalidPhone: {
     id: 4,
@@ -57,7 +53,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '+a3489026435503',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: true,
   },
   userInvalidAddress: {
     id: 4,
@@ -67,7 +62,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '+23489026435503',
     address: '#$daa',
-    is_admin: true,
   },
   userInvalidIsAdmin: {
     id: 4,
@@ -77,7 +71,6 @@ const Users = {
     password: 'adaDE##1123',
     phone_number: '+23489026435503',
     address: 'esiri close, ayobo, lagos state',
-    is_admin: 'false',
   },
   correctSignin: {
     email: 'user1@email.com',

@@ -43,7 +43,7 @@ describe('Tests for User Routes', () => {
           expect(res.body.data).to.have.property('first_name').that.is.a('string');
           expect(res.body.data).to.have.property('last_name').that.is.a('string');
           expect(res.body.data).to.have.property('phone_number').that.is.a('string');
-          expect(res.body.data).to.have.property('is_admin').that.is.a('boolean');
+          expect(res.body.data).to.have.property('role').that.equals('agent');
           done();
         });
     });

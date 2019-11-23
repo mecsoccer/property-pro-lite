@@ -33,8 +33,8 @@ class PropertyController {
 
     const limit = query.limit ? query.limit : 10;
     const offset = query.offset ? query.offset : 0;
-    const stateFilter = query.state;
-    const typeFilter = query.type;
+    const stateFilter = query.state ? query.state : '';
+    const typeFilter = query.type ? query.type : '';
 
     PropertyOperations.getAll(limit, offset, stateFilter, typeFilter)
       .then(result => res.status(200).json({ status: 'success', data: result }))

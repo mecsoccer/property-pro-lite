@@ -76,20 +76,6 @@ describe('Tests for property Routes', () => {
         });
     });
 
-    it('#should return a 422 and error message for invalid owner', (done) => {
-      chai.request(app)
-        .post('/api/v1/property')
-        .set('Authorization', loginToken)
-        .send(invalidOwner)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(422);
-          expect(res.body).to.have.property('error').that.is.a('string');
-          expect(res.body).to.have.property('status').that.equals('error');
-          done();
-        });
-    });
-
     it('#should return a 422 and error message for invalid price', (done) => {
       chai.request(app)
         .post('/api/v1/property')

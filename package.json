@@ -10,7 +10,7 @@
     "migrate": "babel-node ./server/db/migration.js",
     "seed": "babel-node ./server/db/seed.js",
     "migration": "npm run unmigrate && npm run migrate && npm run seed",
-    "test": "nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
+    "test": "npm run migration && nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"
